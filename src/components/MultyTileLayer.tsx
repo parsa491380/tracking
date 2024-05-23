@@ -45,6 +45,7 @@ export default function MultyTileLayer() {
     } else {
       setMore(true);
     }
+    setHover(false);
   };
 
   const items = [
@@ -251,7 +252,9 @@ export default function MultyTileLayer() {
               backgroundColor: "white",
               zIndex: "100000",
             }}
-          ></div>
+          >
+            <button onClick={togleMore}> X</button>
+          </div>
         </>
       ) : null}
     </>

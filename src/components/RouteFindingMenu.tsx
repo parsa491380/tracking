@@ -1,4 +1,5 @@
-import * as React from "react";
+import React, { useState } from "react";
+import GetLocByClick from "./GetLocByClick.tsx";
 
 import { RouteContext } from "../App";
 import DirectionsIcon from "@mui/icons-material/Directions";
@@ -20,10 +21,12 @@ const style = {
 export default function RouteFindingMenu() {
   const {
     setStartLocGeter,
-    setOpenLocMenu,
-    openLocMenu,
+    // setOpenLocMenu,
+    // openLocMenu,
     setDestinationLocGeter,
   } = useContext(RouteContext);
+  const [openLocMenu, setOpenLocMenu] = useState(false);
+
   const handleOpen = () => setOpenLocMenu(true);
   const handleClose = () => setOpenLocMenu(false);
 
@@ -37,32 +40,35 @@ export default function RouteFindingMenu() {
   };
 
   return (
-    <div title="Routing">
-      <div
-        onClick={handleOpen}
-        style={{
-          position: "absolute",
-          bottom: "10px",
-          right: "9px",
-          padding: "0",
-          paddingTop: "2px",
-          zIndex: "9999999999",
-          width: "27px",
-          height: "27px",
-          backgroundColor: "white",
-          borderRadius: "50%",
-          textAlign: "center",
-        }}
-      >
-        <DirectionsIcon
+    <>
+      <div title="Routing">
+        <div
+          onClick={handleOpen}
           style={{
-            margin: "0",
-            top: "5px",
+            position: "absolute",
+            bottom: "10px",
+            right: "11px",
             padding: "0",
-            color: "#0ab6ff",
+            paddingTop: "2px",
+            zIndex: "9999999999",
+            width: "29px",
+            height: "27px",
+            backgroundColor: "white",
+            borderRadius: "50%",
+            textAlign: "center",
           }}
-        />
+        >
+          <DirectionsIcon
+            style={{
+              margin: "0",
+              top: "5px",
+              padding: "0",
+              color: "#0ab6ff",
+            }}
+          />
+        </div>
       </div>
-    </div>
+      {openLocMenu === true ? <GetLocByClick /> : null}
+    </>
   );
 }

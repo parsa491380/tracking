@@ -10,8 +10,7 @@ import {
 } from "react-leaflet";
 import { Icon } from "leaflet";
 import MultyTileLayer from "./components/MultyTileLayer.tsx";
-import LocationButton from "./components/LocationButton.tsx";
-import GetLocByClick from "./components/GetLocByClick.tsx";
+// import LocationButton from "./components/LocationButton.tsx";
 import DeviceLocation from "./components/DeviceLocation.tsx";
 import DestinationPicker from "./components/DestinationPicker.tsx";
 import axios from "axios";
@@ -21,18 +20,18 @@ export const RouteContext = createContext();
 
 function App() {
   const mapRef = useRef(null);
-  const startLocIcon = new Icon({
-    iconUrl:
-      "https://cdn.iconscout.com/icon/premium/png-512-thumb/location-3091991-2574351.png?f=webp&w=256",
-    iconSize: [45, 45], // size of the icon
-    iconAnchor: [20, 40],
-  });
-  const destinationIcon = new Icon({
-    iconUrl:
-      "https://png.pngtree.com/png-vector/20230413/ourmid/pngtree-3d-location-icon-clipart-in-transparent-background-vector-png-image_6704161.png",
-    iconSize: [60, 60], // size of the icon
-    iconAnchor: [30, 50],
-  });
+  // const startLocIcon = new Icon({
+  //   iconUrl:
+  //     "https://cdn.iconscout.com/icon/premium/png-512-thumb/location-3091991-2574351.png?f=webp&w=256",
+  //   iconSize: [45, 45], // size of the icon
+  //   iconAnchor: [20, 40],
+  // });
+  // const destinationIcon = new Icon({
+  //   iconUrl:
+  //     "https://png.pngtree.com/png-vector/20230413/ourmid/pngtree-3d-location-icon-clipart-in-transparent-background-vector-png-image_6704161.png",
+  //   iconSize: [60, 60], // size of the icon
+  //   iconAnchor: [30, 50],
+  // });
 
   const position = [35.68744237931978, 51.38374328613281]; // [latitude, longitude]
   const [data, setData] = useState([]);
@@ -40,7 +39,6 @@ function App() {
   const [destination, setDestination] = useState(null);
   const [startLocGeter, setStartLocGeter] = useState(false);
   const [destinationLocGeter, setDestinationLocGeter] = useState(false);
-  const [openLocMenu, setOpenLocMenu] = useState(false);
   const [openDelIcon, setOpenDelIcon] = useState(false);
 
   // const map = useMap();
@@ -87,9 +85,9 @@ function App() {
           setStartLoc,
           setDestination,
           setStartLocGeter,
-          setOpenLocMenu,
+          // setOpenLocMenu,
           setDestinationLocGeter,
-          openLocMenu,
+          // openLocMenu,
         }}
       >
         <MapContainer
@@ -106,23 +104,22 @@ function App() {
           }}
         >
           {startLocGeter ? <StartPicker /> : null}
-          {openLocMenu === true ? <GetLocByClick /> : null}
 
           {destinationLocGeter ? <DestinationPicker /> : null}
-          {startLoc ? (
+          {/* {startLoc ? (
             <Marker position={startLoc} icon={startLocIcon}>
               <Popup> مبدا </Popup>
             </Marker>
-          ) : null}
-          {destination ? (
+          ) : null} */}
+          {/* {destination ? (
             <Marker position={destination} icon={destinationIcon}>
               <Popup>
                 {" "}
                 <h2> مقصد </h2>
               </Popup>
             </Marker>
-          ) : null}
-          {startLoc && destination ? (
+          ) : null} */}
+          {/* {startLoc && destination ? (
             <button
               onClick={routeFinding}
               style={{
@@ -139,7 +136,7 @@ function App() {
             >
               آغاز مسیر یابی
             </button>
-          ) : null}
+          ) : null} */}
           {openDelIcon ? (
             <button
               onClick={handleDelRout}
