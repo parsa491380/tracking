@@ -1,21 +1,16 @@
 import React, { createContext, useRef, useState } from "react";
 import {
   MapContainer,
-  Marker,
   Polyline,
-  Popup,
   ScaleControl,
   ZoomControl,
-  useMap,
 } from "react-leaflet";
-import { Icon } from "leaflet";
 import MultyTileLayer from "./components/MultyTileLayer.tsx";
-// import LocationButton from "./components/LocationButton.tsx";
+// import { FullscreenControl } from "react-leaflet-fullscreen";
+// // import "leaflet.fullscreen/Control.FullScreen.css";
 import DeviceLocation from "./components/DeviceLocation.tsx";
-import DestinationPicker from "./components/DestinationPicker.tsx";
 import axios from "axios";
 import AdressTextField from "./components/AdressTextField.tsx";
-import StartPicker from "./components/StartPicker.tsx";
 export const RouteContext = createContext();
 
 function App() {
@@ -40,6 +35,7 @@ function App() {
   const [startLocGeter, setStartLocGeter] = useState(false);
   const [destinationLocGeter, setDestinationLocGeter] = useState(false);
   const [openDelIcon, setOpenDelIcon] = useState(false);
+  const [openLocMenu, setOpenLocMenu] = useState(false);
 
   // const map = useMap();
 
@@ -70,14 +66,13 @@ function App() {
     });
   };
 
-  const handleDelRout = () => {
-    setData(null);
-    setDestination(null);
-    setStartLoc(null);
-    setOpenDelIcon(false);
-  };
-  // console.log(startLoc);
-  // console.log(destination);
+  // const handleDelRout = () => {
+  //   setData(null);
+  //   setDestination(null);
+  //   setStartLoc(null);
+  //   setOpenDelIcon(false);
+  // };
+
   return (
     <>
       <RouteContext.Provider
@@ -85,9 +80,9 @@ function App() {
           setStartLoc,
           setDestination,
           setStartLocGeter,
-          // setOpenLocMenu,
+          setOpenLocMenu,
           setDestinationLocGeter,
-          // openLocMenu,
+          openLocMenu,
         }}
       >
         <MapContainer
@@ -97,73 +92,33 @@ function App() {
           zoomControl={false}
           minZoom={4}
           scrollWheelZoom={true}
+          // fullscreenControl={true}
           style={{
             width: "100%",
             height: "100vh",
             zIndex: "1",
           }}
         >
-          {startLocGeter ? <StartPicker /> : null}
-
-          {destinationLocGeter ? <DestinationPicker /> : null}
-          {/* {startLoc ? (
-            <Marker position={startLoc} icon={startLocIcon}>
-              <Popup> مبدا </Popup>
-            </Marker>
-          ) : null} */}
-          {/* {destination ? (
-            <Marker position={destination} icon={destinationIcon}>
-              <Popup>
-                {" "}
-                <h2> مقصد </h2>
-              </Popup>
-            </Marker>
-          ) : null} */}
-          {/* {startLoc && destination ? (
-            <button
-              onClick={routeFinding}
+          {openLocMenu === true ? (
+            <div
               style={{
                 position: "absolute",
-                bottom: "30px",
-                right: "45%",
-                zIndex: "9999999999",
-                color: "blue",
-                width: "8%",
-                height: "50px",
-                backgroundColor: "bisque",
-                borderRadius: "35px",
+                top: "0",
+                left: "0",
+                backgroundColor: "white ",
+                width: "400px",
+                height: "100vh",
+                boxShadow: "100",
+                zIndex: "100000",
               }}
-            >
-              آغاز مسیر یابی
-            </button>
-          ) : null} */}
-          {openDelIcon ? (
-            <button
-              onClick={handleDelRout}
-              style={{
-                position: "absolute",
-                bottom: "30px",
-                right: "35%",
-                zIndex: "9999999999",
-                color: "blue",
-                width: "8%",
-                height: "50px",
-                backgroundColor: "bisque",
-                borderRadius: "35px",
-              }}
-            >
-              حذف مسیر پیدا شده
-            </button>
+            ></div>
           ) : null}
           {data ? <Polyline positions={data} color="red" /> : null}
           <MultyTileLayer />
           <AdressTextField />
           <DeviceLocation />
-          <ZoomControl
-            position={"bottomright"}
-            style={{ borderRadius: "10%", backgroundColor: "#0ab6ff" }}
-          />
-
+          <ZoomControl position={"bottomright"} />
+          {/* <fullscreenControl position={"bottomright"} /> */}
           <ScaleControl imperial={false} position="bottomright" />
         </MapContainer>
       </RouteContext.Provider>

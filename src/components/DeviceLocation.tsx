@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import { Marker, Popup, useMap } from "react-leaflet";
+import { LatLng } from "leaflet";
 
 export default function DeviceLocation() {
-  const [position, setPosition] = useState(null);
+  const [position, setPosition] = useState<LatLng | null>(null);
 
   const map = useMap();
   map.locate();
@@ -48,28 +49,7 @@ export default function DeviceLocation() {
           }}
         />
       </button>
-      {/* {position === null ? (
-        <div
-          style={{
-            position: "absolute",
-            // width: "26vw",
-            // height: "4vh",
-            backgroundColor: "white",
-            border: "2px solid black",
-            color: "blue",
-            top: "15px",
-            left: "50px",
-            padding: "5px",
-            zIndex: "999999",
-          }}
-        >
-          <p>
-            دسترسی به موقعیت مکانی محدود شده است . لطفا در تنظیمات مرورگر خود
-            اجازه دسترسی به موقعیت مکانی خود را بدهید و سپس صفحه را تازه سازی
-            کنید
-          </p>
-        </div>
-      ) : (
+      {position === null ? null : (
         <Marker position={position}>
           <Popup
           // open={true}
@@ -77,7 +57,7 @@ export default function DeviceLocation() {
             You are here
           </Popup>
         </Marker>
-      )} */}
+      )}
     </>
   );
 }
