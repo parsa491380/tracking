@@ -28,8 +28,8 @@ export default function DeviceLocation() {
           margin: 0,
           padding: 0,
           position: "absolute",
-          bottom: "120px",
-          right: "15px",
+          bottom: "130px",
+          right: "25px",
           zIndex: "9999999999",
           color: "white",
           width: "27px",
@@ -51,11 +51,7 @@ export default function DeviceLocation() {
       </button>
       {position === null ? null : (
         <Marker position={position}>
-          <Popup
-          // open={true}
-          >
-            You are here
-          </Popup>
+          <Popup>You are here</Popup>
         </Marker>
       )}
     </>

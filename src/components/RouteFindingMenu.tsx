@@ -14,16 +14,6 @@ export default function RouteFindingMenu() {
   } = useContext(RouteContext);
 
   const handleOpen = () => setOpenLocMenu(true);
-  // const handleClose = () => setOpenLocMenu(false);
-
-  // const startPicker = () => {
-  //   setOpenLocMenu(false);
-  //   setStartLocGeter(true);
-  // };
-  // const destinationPicker = () => {
-  //   setOpenLocMenu(false);
-  //   setDestinationLocGeter(true);
-  // };
 
   return (
     <>

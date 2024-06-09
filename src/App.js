@@ -6,8 +6,6 @@ import {
   ZoomControl,
 } from "react-leaflet";
 import MultyTileLayer from "./components/MultyTileLayer.tsx";
-// import { FullscreenControl } from "react-leaflet-fullscreen";
-// // import "leaflet.fullscreen/Control.FullScreen.css";
 import DeviceLocation from "./components/DeviceLocation.tsx";
 import axios from "axios";
 import AdressTextField from "./components/AdressTextField.tsx";
@@ -15,21 +13,8 @@ export const RouteContext = createContext();
 
 function App() {
   const mapRef = useRef(null);
-  // const startLocIcon = new Icon({
-  //   iconUrl:
-  //     "https://cdn.iconscout.com/icon/premium/png-512-thumb/location-3091991-2574351.png?f=webp&w=256",
-  //   iconSize: [45, 45], // size of the icon
-  //   iconAnchor: [20, 40],
-  // });
-  // const destinationIcon = new Icon({
-  //   iconUrl:
-  //     "https://png.pngtree.com/png-vector/20230413/ourmid/pngtree-3d-location-icon-clipart-in-transparent-background-vector-png-image_6704161.png",
-  //   iconSize: [60, 60], // size of the icon
-  //   iconAnchor: [30, 50],
-  // });
 
   const position = [35.68744237931978, 51.38374328613281]; // [latitude, longitude]
-  const [data, setData] = useState([]);
   const [startLoc, setStartLoc] = useState(null);
   const [destination, setDestination] = useState(null);
   const [startLocGeter, setStartLocGeter] = useState(false);
@@ -37,40 +22,23 @@ function App() {
   const [openDelIcon, setOpenDelIcon] = useState(false);
   const [openLocMenu, setOpenLocMenu] = useState(false);
 
-  // const map = useMap();
+  // const routeFinding = () => {
+  //   const route = [startLoc, destination];
+  //   console.log(route);
 
-  // useEffect(() => {
-  //   // if (!map) return;
-
-  //   map.on("click", (e) => {
-  //     console.log(e.latlng);
+  //   axios.put(`http://localhost:8000/data/1`, { route }).then((res) => {
+  //     console.log(res.data);
+  //     RouteMaker();
   //   });
-  // }, [map]);
+  // };
 
-  const routeFinding = () => {
-    const route = [startLoc, destination];
-    console.log(route);
-
-    axios.put(`http://localhost:8000/data/1`, { route }).then((res) => {
-      console.log(res.data);
-      RouteMaker();
-    });
-  };
-
-  const RouteMaker = () => {
-    axios.get("http://localhost:8000/data").then((response) => {
-      setData(response.data[0].route);
-      console.log(response.data[0].route);
-      setOpenDelIcon(true);
-      // mapRef.current.flyToBounds(data[0]);
-    });
-  };
-
-  // const handleDelRout = () => {
-  //   setData(null);
-  //   setDestination(null);
-  //   setStartLoc(null);
-  //   setOpenDelIcon(false);
+  // const RouteMaker = () => {
+  //   axios.get("http://localhost:8000/data").then((response) => {
+  //     setData(response.data[0].route);
+  //     console.log(response.data[0].route);
+  //     setOpenDelIcon(true);
+  //     // mapRef.current.flyToBounds(data[0]);
+  //   });
   // };
 
   return (
@@ -113,7 +81,7 @@ function App() {
               }}
             ></div>
           ) : null}
-          {data ? <Polyline positions={data} color="red" /> : null}
+          {/* {data ? <Polyline positions={data} color="red" /> : null} */}
           <MultyTileLayer />
           <AdressTextField />
           <DeviceLocation />
