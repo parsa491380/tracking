@@ -1,25 +1,32 @@
 import React, { useState } from "react";
 import LayersIcon from "@mui/icons-material/Layers";
 import { TileLayer } from "react-leaflet";
+import "./css/MultyTileLayer.css";
+import { ClassNames } from "@emotion/react";
 
 export default function MultyTileLayer() {
-  const [mapNumber, setMapNumber] = useState("1");
-  const [hover, setHover] = useState(false);
-  const [more, setMore] = useState(false);
+  const [mapNumber, setMapNumber] = useState<number>(1);
+  const [hover, setHover] = useState<boolean>(false);
+  const [more, setMore] = useState<boolean>(false);
+  const [satActive, setSatActive] = useState<string>("inactive");
+  const [openActive, setOpenActive] = useState<string>("active");
 
-  const layers = {
-    google: "https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}",
-
-    open: "https://www.google.cn/maps/vt?lyrs=y@189&gl=cn&x={x}&y={y}&z={z}",
-
-    dark: "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png",
+  const togleToSatMap = () => {
+    setMapNumber(2);
+    setSatActive("active");
+    setOpenActive("inactive");
+  };
+  const togleToOpenMap = () => {
+    setMapNumber(1);
+    setSatActive("inactive");
+    setOpenActive("active");
   };
 
   const togleMap = () => {
-    if (mapNumber === "1") {
-      setMapNumber("2");
+    if (mapNumber === 1) {
+      togleToSatMap();
     } else {
-      setMapNumber("1");
+      togleToOpenMap();
     }
   };
 
@@ -48,101 +55,112 @@ export default function MultyTileLayer() {
     setHover(false);
   };
 
+  const layers = {
+    google: "https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}",
+
+    open: "https://www.google.cn/maps/vt?lyrs=y@189&gl=cn&x={x}&y={y}&z={z}",
+
+    dark: "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png",
+  };
   const items = [
     {
-      url: "https://cdn.shopify.com/s/files/1/0384/0233/files/topographic-map-example.png",
+      url: "https://upload.wikimedia.org/wikipedia/fa/thumb/0/0f/%D9%86%D9%82%D8%B4%D9%87_%D8%AA%D9%88%D9%BE%D9%88%DA%AF%D8%B1%D8%A7%D9%81%DB%8C.png/250px-%D9%86%D9%82%D8%B4%D9%87_%D8%AA%D9%88%D9%BE%D9%88%DA%AF%D8%B1%D8%A7%D9%81%DB%8C.png",
       title: " Terrain ",
       link: "#a",
+      quickAccess: true,
       funk: alarm,
     },
     {
-      url: "https://www.arcgis.com/sharing/rest/content/items/bbdcd78953e5439985004023c8eda03d/info/screenshots/traffic_rio.jpg",
+      url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUd01fggb9t8iNx-wZwZiUIMjC6uGd6OQeFA&s",
       title: "Teraffic ",
       link: "#b",
+      quickAccess: true,
+
       funk: alarm,
     },
     {
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Hermes_1279-III.jpg/640px-Hermes_1279-III.jpg",
+      url: "https://www.labege.fr/wp-content/uploads/2018/08/bus-scolaire.jpg",
       title: " Transit ",
       link: "#c",
+      quickAccess: true,
+
       funk: alarm,
     },
     {
-      url: "https://i.pinimg.com/736x/fd/d2/53/fdd25311ed3e5010c87bf643b53bd504.jpg",
+      url: "https://cdn.prod.website-files.com/5b44edefca321a1e2d0c2aa6/5f61480845b551637e3c3969_Dimensions-Transport-Bicycles-Fixed-Gear-Bicycle-Fixie-Icon.svg",
       title: "Biking",
       link: "#d",
+      quickAccess: true,
+
       funk: alarm,
     },
     {
       url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUpJTpd0c51OCliwq1n2NIWX5NjHyx0jpBhomwUyDrdA&s",
       title: "More",
       link: "#e",
+      quickAccess: true,
+
       funk: togleMore,
     },
+    {
+      url: "https://cdn.prod.website-files.com/5b44edefca321a1e2d0c2aa6/5f61480845b551637e3c3969_Dimensions-Transport-Bicycles-Fixed-Gear-Bicycle-Fixie-Icon.svg",
+      title: "Biking",
+      link: "#d",
+      quickAccess: false,
+      funk: alarm,
+    },
+    {
+      url: "https://cdn.prod.website-files.com/5b44edefca321a1e2d0c2aa6/5f61480845b551637e3c3969_Dimensions-Transport-Bicycles-Fixed-Gear-Bicycle-Fixie-Icon.svg",
+      title: "Biking",
+      link: "#d",
+      quickAccess: false,
+      funk: alarm,
+    },
   ];
+  const quickAccessItems = items.filter((item) => {
+    return item.quickAccess === true;
+  });
+  const moreDivItems = items.filter((item) => {
+    return item.title !== "More";
+  });
+  function DisplayMoreItems(props) {
+    return (
+      <>
+        {props.a.map((item) => {
+          return (
+            <>
+              <div onClick={item.funk} className="hoverItems" key={item.title}>
+                <a target={item.link} key={item.link}>
+                  <img
+                    className="hoverItemImages"
+                    src={item.url}
+                    key={item.src}
+                  />
+                  <h4 id="hoverItemText">{item.title}</h4>
+                </a>
+              </div>
+            </>
+          );
+        })}
+      </>
+    );
+  }
 
-  const satelliteStyle = {
-    width: "80px",
-    height: "80px",
-    zIndex: "1",
-    border: "2px solid black",
-    borderRadius: "10%",
-    backgroundImage:
-      "url(https://assets-global.website-files.com/609ed46055e27a02ffc0749b/63e283046102e525aae4fcc1_Mapbox%20satellite%20image%20-%20Sutter%20Buttes%2C%20California.png)",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    color: "white",
-  };
-
-  const openStreetStyle = {
-    width: "80px",
-    height: "80px",
-    zIndex: "1",
-    border: "2px solid black",
-    borderRadius: "10%",
-    backgroundImage:
-      "url(https://upload.wikimedia.org/wikipedia/commons/b/bb/Open_Street_Map.png)",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    color: "white",
-  };
   return (
     <>
       <div
+        id="baseDiv"
         onClick={togleMap}
         onMouseOver={onMouseOver}
         onMouseOut={onHoverOut}
-        style={{
-          position: "absolute",
-          bottom: "40px",
-          left: "80px",
-          width: "80px",
-          height: "80px",
-          zIndex: "99999",
-          borderRadius: "10%",
-        }}
       >
-        {mapNumber === "1" ? (
-          <div style={satelliteStyle}>
-            <center
-              style={{
-                backgroundColor: "rgba(0, 0, 0, 0.4)",
-                width: "80px",
-                height: "80px",
-                borderRadius: "10%",
-              }}
-            >
+        {mapNumber === 1 ? (
+          <div id="satelliteStyle">
+            <center className="center">
               <TileLayer url={layers.google} />
               {hover === false ? (
                 <>
-                  <LayersIcon
-                    style={{
-                      position: "absolute",
-                      top: "25px",
-                      left: "30px",
-                      borderRadius: "10%",
-                    }}
-                  />
+                  <LayersIcon className="LayersIcon" />
                   layers
                 </>
               ) : (
@@ -151,24 +169,12 @@ export default function MultyTileLayer() {
             </center>
           </div>
         ) : (
-          <div style={openStreetStyle}>
-            <center
-              style={{
-                backgroundColor: "rgba(0, 0, 0, 0.4)",
-                width: "80px",
-                height: "80px",
-              }}
-            >
+          <div id="openStreetStyle">
+            <center className="center">
               <TileLayer url={layers.open} />
               {hover === false ? (
                 <>
-                  <LayersIcon
-                    style={{
-                      position: "absolute",
-                      top: "25px",
-                      left: "30px",
-                    }}
-                  />
+                  <LayersIcon className="LayersIcon" />
                   layers
                 </>
               ) : (
@@ -180,80 +186,81 @@ export default function MultyTileLayer() {
       </div>
       {hover === true ? (
         <div
+          id="hoverBaseDiv"
           onMouseOver={onMouseOver}
           onMouseOut={onHoverOut}
-          style={{
-            width: "470px",
-            height: "80px",
-            position: "absolute",
-            bottom: "40px",
-            left: "80px",
-            transition: "width 5s",
-            zIndex: "10000",
-          }}
         >
-          <div
-            style={{
-              position: "absolute",
-              right: "0",
-              width: "380px",
-              height: "83px",
-              backgroundColor: "white",
-              borderRadius: "10px",
-            }}
-          >
-            {items.map((item) => {
-              return (
-                <>
-                  <div
-                    style={{
-                      width: "20px",
-                      height: "80px",
-                      display: "inline-block",
-                    }}
-                  ></div>
-
-                  <div
-                    onClick={item.funk}
-                    style={{
-                      width: "50px",
-                      height: "70px",
-                      display: "inline-block",
-                    }}
-                  >
-                    <a target={item.link}>
-                      <img
-                        src={item.url}
-                        style={{
-                          width: "50px",
-                          height: "50px",
-                          borderRadius: "5px",
-                        }}
-                      />
-                      <h4>{item.title}</h4>
-                    </a>
-                  </div>
-                </>
-              );
-            })}
+          <div id="hoverVisibleDiv">
+            <DisplayMoreItems a={quickAccessItems} />
           </div>
         </div>
       ) : null}
 
       {more === true ? (
         <>
-          <div
-            style={{
-              position: "absolute",
-              width: "250px",
-              height: "500px",
-              bottom: "30px",
-              left: "30px",
-              backgroundColor: "white",
-              zIndex: "100000",
-            }}
-          >
-            <button onClick={togleMore}> X</button>
+          <div id="moreDiv">
+            <h4 className="moretext"> BASE MAPS : </h4>
+            <div onClick={togleMore} id="closeMoreDiv">
+              X
+            </div>
+
+            {/* 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ */}
+
+            <div className={satActive} onClick={togleToSatMap}>
+              <div id="satelliteMoreStyle"></div>
+              <h4 className={` baseMapSubtitle `}> satellite</h4>
+            </div>
+
+            <div className={openActive} onClick={togleToOpenMap}>
+              <div id="openStreetMoreStyle"></div>
+              <h4 className={` baseMapSubtitle `}>open-street</h4>
+            </div>
+
+            {/* 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ */}
+
+            <span className="span"></span>
+
+            <h4 className="moretext"> MORE MAPS LAYERS : </h4>
+            <DisplayMoreItems a={moreDivItems} />
           </div>
         </>
       ) : null}

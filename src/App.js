@@ -20,7 +20,6 @@ function App() {
   const [startLocGeter, setStartLocGeter] = useState(false);
   const [destinationLocGeter, setDestinationLocGeter] = useState(false);
   const [openDelIcon, setOpenDelIcon] = useState(false);
-  const [openLocMenu, setOpenLocMenu] = useState(false);
 
   // const routeFinding = () => {
   //   const route = [startLoc, destination];
@@ -48,9 +47,9 @@ function App() {
           setStartLoc,
           setDestination,
           setStartLocGeter,
-          setOpenLocMenu,
+          // setOpenLocMenu,
           setDestinationLocGeter,
-          openLocMenu,
+          // openLocMenu,
         }}
       >
         <MapContainer
@@ -67,27 +66,11 @@ function App() {
             zIndex: "1",
           }}
         >
-          {openLocMenu === true ? (
-            <div
-              style={{
-                position: "absolute",
-                top: "0",
-                left: "0",
-                backgroundColor: "white ",
-                width: "400px",
-                height: "100vh",
-                boxShadow: "100",
-                zIndex: "100000",
-              }}
-            ></div>
-          ) : null}
-          {/* {data ? <Polyline positions={data} color="red" /> : null} */}
-          <MultyTileLayer />
           <AdressTextField />
           <DeviceLocation />
           <ZoomControl position={"bottomright"} />
-          {/* <fullscreenControl position={"bottomright"} /> */}
           <ScaleControl imperial={false} position="bottomright" />
+          <MultyTileLayer />
         </MapContainer>
       </RouteContext.Provider>
     </>

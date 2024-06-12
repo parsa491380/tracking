@@ -1,0 +1,180 @@
+#baseDiv {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  width: 80px;
+  height: 80px;
+  z-index: 999;
+  border-radius: 10%;
+}
+
+#satelliteStyle {
+  width: 80px;
+  height: 80px;
+  z-index: 99999;
+  border: 2px solid black;
+  border-radius: 10%;
+  background-image: url(https://assets-global.website-files.com/609ed46055e27a02ffc0749b/63e283046102e525aae4fcc1_Mapbox%20satellite%20image%20-%20Sutter%20Buttes%2C%20California.png);
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+#openStreetStyle {
+  width: 80px;
+  height: 80px;
+  z-index: 1;
+  border: 2px solid black;
+  border-radius: 10%;
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/bb/Open_Street_Map.png);
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+.center {
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 80px;
+  height: 80px;
+  border-radius: "10%";
+}
+.LayersIcon {
+  position: absolute;
+  top: 25px;
+  left: 30px;
+  border-radius: "10%";
+}
+
+#hoverBaseDiv {
+  width: 70px;
+  height: 470px;
+  position: absolute;
+  top: 120px;
+  right: 40px;
+  z-index: 998;
+}
+#hoverVisibleDiv {
+  position: absolute;
+  left: 0;
+  padding-top: 2px;
+  width: 70px;
+  height: 410px;
+  background-color: #b4e6fd;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.hoverItems {
+  width: 60px;
+  height: 75px;
+  align-items: center;
+  margin-top: 2px;
+  margin-left: 4px;
+  margin-right: 6px;
+  border-radius: 5px;
+  color: #0078a8;
+  border: 2px solid #b4e6fd;
+
+  display: inline-block;
+}
+
+.hoverItemImages {
+  width: 50px;
+  height: 50px;
+  margin-left: 5px;
+  margin-top: 2px;
+  border-radius: 10px;
+}
+.hoverItems:hover {
+  border: 2px solid white;
+}
+#hoverItemText {
+  text-align: center;
+  margin-top: 0;
+}
+
+#moreDiv {
+  position: absolute;
+  width: 300px;
+  height: 500px;
+  top: 30px;
+  right: 35px;
+  z-index: 100000;
+  color: #0078a8;
+  background-color: #b4e6fd;
+  border-radius: 10px;
+}
+#closeMoreDiv {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding-bottom: 5px;
+  color: white;
+  background-color: #0ab6ff;
+  border-radius: 5px;
+  font-size: large;
+  text-align: center;
+}
+#openStreetMoreStyle {
+  width: 80px;
+  height: 80px;
+  z-index: 1;
+  border-radius: 10%;
+  margin: 5px 0px 0px 0px;
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/bb/Open_Street_Map.png);
+  background-size: cover;
+  background-position: center;
+  /* color: white; */
+  display: inline-block;
+}
+#satelliteMoreStyle {
+  width: 80px;
+  height: 80px;
+  margin: 5px 0px 0px 0px;
+
+  border-radius: 10%;
+  background-image: url(https://assets-global.website-files.com/609ed46055e27a02ffc0749b/63e283046102e525aae4fcc1_Mapbox%20satellite%20image%20-%20Sutter%20Buttes%2C%20California.png);
+  background-size: cover;
+  background-position: center;
+  /* color: white; */
+  display: inline-block;
+}
+.baseMapSubtitle {
+  display: inline-block;
+  margin: 0;
+  border: none;
+
+  /* color: #0ab6ff; */
+}
+
+.moretext {
+  color: gray;
+  margin-left: 20px;
+}
+.active {
+  text-align: center;
+  width: 90px;
+  height: 110px;
+  margin-left: 35px;
+  border-radius: 10px;
+  border: 3px solid white;
+  /* color: #0a9dff; */
+  display: inline-block;
+}
+.inactive {
+  text-align: center;
+  width: 90px;
+  height: 110px;
+  margin-left: 35px;
+  border-radius: 10px;
+  border: 3px solid #b4e6fd;
+  color: gray;
+  display: inline-block;
+}
+.span {
+  width: 285px;
+  height: 2px;
+  margin: 5px 0px 0px 5px;
+  background-color: gray;
+  border-radius: 2px;
+  display: block;
+}

@@ -1,0 +1,31 @@
+#iconDiv {
+  position: absolute;
+  bottom: 10px;
+  right: 11px;
+  padding: 0;
+  padding-top: 2px;
+  z-index: 99999999;
+  width: 29px;
+  height: 27px;
+  background-color: white;
+  border-radius: 50%;
+  text-align: center;
+}
+
+#DirectionsIcon {
+  margin: 0;
+  top: 5px;
+  padding: 0;
+  color: #0ab6ff;
+}
+
+#locMenuDiv {
+  position: absolute;
+  top: -13px;
+  left: -17px;
+  background-color: white;
+  width: 400px;
+  height: 100vh;
+  /* box-shadow: 100px; */
+  z-index: 9999999999;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "leaflet/dist/leaflet.css";
-import "./components/leafletCustomization.css";
+import "./components/css/leafletCustomization.css";
 
 import "./index.css";
 

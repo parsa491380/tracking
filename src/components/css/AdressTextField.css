@@ -1,0 +1,18 @@
+#paperStyle {
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+  width: 370px;
+  height: 45px;
+  z-index: 9999;
+  position: absolute;
+  left: 17px;
+  top: 13px;
+  border-radius: 50px;
+}
+#input {
+  width: 240px;
+  height: 30px;
+  border: 1px solid white;
+  border-radius: 5px;
+}
