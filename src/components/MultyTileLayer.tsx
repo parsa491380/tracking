@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import LayersIcon from "@mui/icons-material/Layers";
 import { TileLayer } from "react-leaflet";
 import "./css/MultyTileLayer.css";
-import { ClassNames } from "@emotion/react";
 
 export default function MultyTileLayer() {
   const [mapNumber, setMapNumber] = useState<number>(1);
@@ -64,6 +63,8 @@ export default function MultyTileLayer() {
   };
   const items = [
     {
+      key: 1,
+
       url: "https://upload.wikimedia.org/wikipedia/fa/thumb/0/0f/%D9%86%D9%82%D8%B4%D9%87_%D8%AA%D9%88%D9%BE%D9%88%DA%AF%D8%B1%D8%A7%D9%81%DB%8C.png/250px-%D9%86%D9%82%D8%B4%D9%87_%D8%AA%D9%88%D9%BE%D9%88%DA%AF%D8%B1%D8%A7%D9%81%DB%8C.png",
       title: " Terrain ",
       link: "#a",
@@ -71,6 +72,8 @@ export default function MultyTileLayer() {
       funk: alarm,
     },
     {
+      key: 2,
+
       url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUd01fggb9t8iNx-wZwZiUIMjC6uGd6OQeFA&s",
       title: "Teraffic ",
       link: "#b",
@@ -79,6 +82,8 @@ export default function MultyTileLayer() {
       funk: alarm,
     },
     {
+      key: 3,
+
       url: "https://www.labege.fr/wp-content/uploads/2018/08/bus-scolaire.jpg",
       title: " Transit ",
       link: "#c",
@@ -87,6 +92,8 @@ export default function MultyTileLayer() {
       funk: alarm,
     },
     {
+      key: 4,
+
       url: "https://cdn.prod.website-files.com/5b44edefca321a1e2d0c2aa6/5f61480845b551637e3c3969_Dimensions-Transport-Bicycles-Fixed-Gear-Bicycle-Fixie-Icon.svg",
       title: "Biking",
       link: "#d",
@@ -95,6 +102,8 @@ export default function MultyTileLayer() {
       funk: alarm,
     },
     {
+      key: 5,
+
       url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUpJTpd0c51OCliwq1n2NIWX5NjHyx0jpBhomwUyDrdA&s",
       title: "More",
       link: "#e",
@@ -103,6 +112,8 @@ export default function MultyTileLayer() {
       funk: togleMore,
     },
     {
+      key: 6,
+
       url: "https://cdn.prod.website-files.com/5b44edefca321a1e2d0c2aa6/5f61480845b551637e3c3969_Dimensions-Transport-Bicycles-Fixed-Gear-Bicycle-Fixie-Icon.svg",
       title: "Biking",
       link: "#d",
@@ -110,6 +121,8 @@ export default function MultyTileLayer() {
       funk: alarm,
     },
     {
+      key: 7,
+
       url: "https://cdn.prod.website-files.com/5b44edefca321a1e2d0c2aa6/5f61480845b551637e3c3969_Dimensions-Transport-Bicycles-Fixed-Gear-Bicycle-Fixie-Icon.svg",
       title: "Biking",
       link: "#d",
@@ -126,17 +139,19 @@ export default function MultyTileLayer() {
   function DisplayMoreItems(props) {
     return (
       <>
-        {props.a.map((item) => {
+        {props.options.map((item) => {
           return (
             <>
-              <div onClick={item.funk} className="hoverItems" key={item.title}>
+              <div onClick={item.funk} className="hoverItems" key={item.key}>
                 <a target={item.link} key={item.link}>
                   <img
                     className="hoverItemImages"
                     src={item.url}
-                    key={item.src}
+                    key={item.url}
                   />
-                  <h4 id="hoverItemText">{item.title}</h4>
+                  <h4 id="hoverItemText" key={item.title}>
+                    {item.title}
+                  </h4>
                 </a>
               </div>
             </>
@@ -191,7 +206,7 @@ export default function MultyTileLayer() {
           onMouseOut={onHoverOut}
         >
           <div id="hoverVisibleDiv">
-            <DisplayMoreItems a={quickAccessItems} />
+            <DisplayMoreItems options={quickAccessItems} />
           </div>
         </div>
       ) : null}
@@ -204,23 +219,6 @@ export default function MultyTileLayer() {
               X
             </div>
 
-            {/* 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- */}
-
             <div className={satActive} onClick={togleToSatMap}>
               <div id="satelliteMoreStyle"></div>
               <h4 className={` baseMapSubtitle `}> satellite</h4>
@@ -231,36 +229,13 @@ export default function MultyTileLayer() {
               <h4 className={` baseMapSubtitle `}>open-street</h4>
             </div>
 
-            {/* 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- */}
-
             <span className="span"></span>
 
             <h4 className="moretext"> MORE MAPS LAYERS : </h4>
-            <DisplayMoreItems a={moreDivItems} />
+            <DisplayMoreItems options={moreDivItems} />
+
+            <span className="span"></span>
+            <h4 className="moretext"> MAP POINTS : </h4>
           </div>
         </>
       ) : null}

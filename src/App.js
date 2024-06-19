@@ -5,6 +5,7 @@ import {
   ScaleControl,
   ZoomControl,
 } from "react-leaflet";
+
 import MultyTileLayer from "./components/MultyTileLayer.tsx";
 import DeviceLocation from "./components/DeviceLocation.tsx";
 import axios from "axios";
@@ -59,7 +60,6 @@ function App() {
           zoomControl={false}
           minZoom={4}
           scrollWheelZoom={true}
-          // fullscreenControl={true}
           style={{
             width: "100%",
             height: "100vh",
