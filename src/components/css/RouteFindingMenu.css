@@ -20,14 +20,15 @@
 }
 
 #locMenuDiv {
-  position: absolute;
-  top: -13px;
-  left: -17px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
   background-color: white;
   width: 400px;
   height: 100vh;
-  /* box-shadow: 100px; */
-  z-index: 9999999999;
+  box-shadow: 100px;
+  z-index: 9999999999999999999999999999999999999999999999999999999999999999;
+  /* pointer-events: none; */
 }
 
 /* 
@@ -35,51 +36,44 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  */
-
-#close {
-  /* position: absolute;
-  top: 20px;
-  right: 20px; */
-  display: inline;
-  width: 32px;
-  height: 30px;
+#iconGroupContainer {
+  width: 396px;
+  height: 250px;
+  border: 2px solid rgb(253, 16, 16);
   text-align: center;
-  font-size: large;
-  border-radius: 50%;
+}
+#iconGroup {
+  display: inline;
+  width: 35px;
+  height: 35px;
+  margin: 20px 0px 0px 25px;
+  /* text-align: center; */
+  /* font-size: large; */
+  border-radius: 10px;
   border: 2px solid white;
+}
+#iconGroup:hover {
+  color: #0ab6ff;
+  border: 2px solid rgb(5, 191, 248);
+}
+.adressInput {
+  width: 250px;
+  height: 40px;
+  margin: 0px 0px 0px 5px;
+  border: 2px solid #62cefc;
+  border-radius: 10px;
+}
+h3 {
+  display: inline;
+}
 
-  /* background-color: #0ab6ff; */
-}
-#close:hover {
-  /* border-color: blue; */
-  background-color: #0ab6ff;
-  color: white;
-}
-#icons {
-  margin-top: 15px;
-  background-color: #a3e4ff;
-  width: 400px;
-  height: 70px;
+.inputDiv {
+  width: 350px;
+  /* height: 60px; */
+  margin: 0px 0px 0px 15px;
+  padding: 10px;
+  /* border: 2px solid rgb(238, 68, 68); */
 }
 
 #inputs {
@@ -98,4 +92,33 @@
   height: auto;
   height: 500px;
   background-color: #a3e4ff;
+}
+
+#goTOLocation {
+  position: relative;
+  width: 320px;
+  height: 40px;
+  border: 2px solid #0ab6ff;
+  margin-left: 35px;
+  border-radius: 20px;
+  text-align: center;
+}
+#goTOLocation:hover {
+  background-color: #76d6ff;
+  border: 2px solid #001aff;
+  color: white;
+}
+#goTOLocation h3 {
+  position: absolute;
+  margin: 0px;
+  top: 10px;
+  left: 50px;
+  width: 200px;
+  height: 10px;
+}
+#goTOLocationIcon {
+  position: absolute;
+  left: 20px;
+  top: 5px;
+  margin: 0px 10px;
 }

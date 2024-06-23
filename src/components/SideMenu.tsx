@@ -9,19 +9,17 @@ export default function SideMenu() {
   const handleClose = () => setOpen(false);
   return (
     <>
-      <IconButton
-        sx={{ p: "10px", display: "inline" }}
-        aria-label="menu"
-        onClick={handleOpen}
-      >
+      <IconButton id="iconButton" aria-label="menu" onClick={handleOpen}>
         <MenuIcon titleAccess=" Open Menu" />
       </IconButton>
-      <div>
+
+      <div id="modalDiv">
         <Modal
           open={open}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
+          // sx={{ display: "inline" }}
         >
           <div id="div">
             <h4 className="title"> SALMAN MAPS </h4>

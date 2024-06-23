@@ -1,22 +1,23 @@
 import React, { createContext, useRef, useState } from "react";
+import { L } from "leaflet";
 import {
   MapContainer,
   Polyline,
   ScaleControl,
   ZoomControl,
 } from "react-leaflet";
-
+import FullScreenBotton from "./components/FullScreenBotton.tsx";
 import MultyTileLayer from "./components/MultyTileLayer.tsx";
 import DeviceLocation from "./components/DeviceLocation.tsx";
-import axios from "axios";
+// import axios from "axios";
 import AdressTextField from "./components/AdressTextField.tsx";
 export const RouteContext = createContext();
 
 function App() {
-  const mapRef = useRef(null);
+  // const mapRef = useRef(null);
 
   const position = [35.68744237931978, 51.38374328613281]; // [latitude, longitude]
-  const [startLoc, setStartLoc] = useState(null);
+  const [activeOclick, setActiveOclick] = useState(true);
   const [destination, setDestination] = useState(null);
   const [startLocGeter, setStartLocGeter] = useState(false);
   const [destinationLocGeter, setDestinationLocGeter] = useState(false);
@@ -41,20 +42,33 @@ function App() {
   //   });
   // };
 
+  // Disable map click when clicking on a specific component inside the map container
+
+  // var map = L.map("map").setView([51.505, -0.09], 13);
+
+  // // Add a click event listener to the component inside the map container
+  // var component = document.getElementById("component");
+  // component.addEventListener("click", function (event) {
+  //   // Prevent the click event from propagating to the map
+  //   event.stopPropagation();
+  // });
+
+  // // Add a click event listener to the map to prevent click event if component is clicked
+  // map.on("click", function (event) {
+  //   if (!event.originalEvent._stopped) {
+  //     console.log("Map clicked");
+  //   }
+  // });
+
+  const aaa = (event) => {
+    event.stopPropagation();
+  };
+
   return (
     <>
-      <RouteContext.Provider
-        value={{
-          setStartLoc,
-          setDestination,
-          setStartLocGeter,
-          // setOpenLocMenu,
-          setDestinationLocGeter,
-          // openLocMenu,
-        }}
-      >
+      <RouteContext.Provider value={{ setActiveOclick }}>
         <MapContainer
-          ref={mapRef}
+          // ref={mapRef}
           center={position}
           zoom={12}
           zoomControl={false}
@@ -66,8 +80,9 @@ function App() {
             zIndex: "1",
           }}
         >
-          <AdressTextField />
+          <AdressTextField onClick={aaa} />
           <DeviceLocation />
+          <FullScreenBotton />
           <ZoomControl position={"bottomright"} />
           <ScaleControl imperial={false} position="bottomright" />
           <MultyTileLayer />

@@ -1,0 +1,18 @@
+#fullScreen {
+  position: absolute;
+  bottom: 160px;
+  right: 25px;
+  width: 25px;
+  height: 25px;
+  z-index: 99999;
+  background-color: #0ab6ff;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.icon {
+  z-index: 9999999;
+  width: 30px;
+  height: 30px;
+}

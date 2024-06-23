@@ -11,6 +11,7 @@
   background-color: #0ab6ff;
   border: 1px solid #ccc;
   border-radius: 5px;
+  cursor: pointer;
 }
 #icon {
   margin: 0;

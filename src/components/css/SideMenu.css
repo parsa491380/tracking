@@ -8,10 +8,22 @@
   box-shadow: 100;
   background-color: #b4e6fd;
 }
+#iconButton {
+  padding-top: 13px;
+  /* margin: 0px 0px 10px 0px; */
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  color: black;
+}
+
 .title {
   display: inline-block;
   color: rgb(32, 180, 27);
   margin: 10px 0px 10px 20px;
+}
+#modalDiv {
+  display: inline-block;
 }
 #closer {
   width: 20px;
