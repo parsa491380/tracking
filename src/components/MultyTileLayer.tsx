@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import LayersIcon from "@mui/icons-material/Layers";
 import { TileLayer } from "react-leaflet";
 import "./css/MultyTileLayer.css";
+import { RouteContext } from "../App.js";
 
 export default function MultyTileLayer() {
   const [mapNumber, setMapNumber] = useState<number>(1);
@@ -9,6 +10,8 @@ export default function MultyTileLayer() {
   const [more, setMore] = useState<boolean>(false);
   const [satActive, setSatActive] = useState<string>("inactive");
   const [openActive, setOpenActive] = useState<string>("active");
+
+  const { setActiveOnclick } = useContext(RouteContext);
 
   const togleToSatMap = () => {
     setMapNumber(2);
@@ -32,10 +35,13 @@ export default function MultyTileLayer() {
   let myTimeOut;
 
   const onMouseOver = () => {
+    setActiveOnclick(false);
     clearTimeout(myTimeOut);
     setHover(true);
   };
   const onHoverOut = () => {
+    setActiveOnclick(true);
+
     myTimeOut = setTimeout(() => {
       setHover(false);
     }, 1000);
@@ -127,7 +133,7 @@ export default function MultyTileLayer() {
       title: "Biking",
       link: "#d",
       quickAccess: false,
-      funk: alarm,
+      func: alarm,
     },
   ];
   const quickAccessItems = items.filter((item) => {
