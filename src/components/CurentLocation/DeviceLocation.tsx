@@ -1,14 +1,19 @@
-import React, { RefAttributes, useState } from "react";
+import React, { useState } from "react";
 
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
-import { Marker, MarkerProps, Popup, useMap } from "react-leaflet";
+import { Marker, Popup, useMap } from "react-leaflet";
 import { LatLng, Icon } from "leaflet";
 import L from "leaflet";
 
-import "./css/DeviceLocation.css";
+import "./DeviceLocation.css";
 
 export default function DeviceLocation() {
   const [position, setPosition] = useState<LatLng | null>(null);
+  const divRef = React.useRef(null);
+  React.useEffect(() => {
+    L.DomEvent.disableClickPropagation(divRef.current);
+    L.DomEvent.disableScrollPropagation(divRef.current);
+  });
 
   const map = useMap();
 
@@ -35,7 +40,12 @@ export default function DeviceLocation() {
 
   return (
     <>
-      <button id="button" onClick={handleClick} onDoubleClick={handleClick}>
+      <button
+        id="button"
+        onClick={handleClick}
+        ref={divRef}
+        onDoubleClick={handleClick}
+      >
         <GpsFixedIcon id="icon" />
       </button>
       {position === null ? null : (

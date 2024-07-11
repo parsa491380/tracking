@@ -1,17 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import LayersIcon from "@mui/icons-material/Layers";
 import { TileLayer } from "react-leaflet";
-import "./css/MultyTileLayer.css";
-import { RouteContext } from "../App.js";
+import "./MultyTileLayer.css";
+import L from "leaflet";
+import { Drawer } from "@mui/material";
 
 export default function MultyTileLayer() {
-  const [mapNumber, setMapNumber] = useState<number>(1);
+  const [mapNumber, setMapNumber] = useState<number>(2);
   const [hover, setHover] = useState<boolean>(false);
   const [more, setMore] = useState<boolean>(false);
   const [satActive, setSatActive] = useState<string>("inactive");
   const [openActive, setOpenActive] = useState<string>("active");
 
-  const { setActiveOnclick } = useContext(RouteContext);
+  const divRef = React.useRef(null);
+  React.useEffect(() => {
+    L.DomEvent.disableClickPropagation(divRef.current);
+    L.DomEvent.disableScrollPropagation(divRef.current);
+  });
 
   const togleToSatMap = () => {
     setMapNumber(2);
@@ -35,12 +40,10 @@ export default function MultyTileLayer() {
   let myTimeOut;
 
   const onMouseOver = () => {
-    setActiveOnclick(false);
     clearTimeout(myTimeOut);
     setHover(true);
   };
   const onHoverOut = () => {
-    setActiveOnclick(true);
 
     myTimeOut = setTimeout(() => {
       setHover(false);
@@ -70,7 +73,6 @@ export default function MultyTileLayer() {
   const items = [
     {
       key: 1,
-
       url: "https://upload.wikimedia.org/wikipedia/fa/thumb/0/0f/%D9%86%D9%82%D8%B4%D9%87_%D8%AA%D9%88%D9%BE%D9%88%DA%AF%D8%B1%D8%A7%D9%81%DB%8C.png/250px-%D9%86%D9%82%D8%B4%D9%87_%D8%AA%D9%88%D9%BE%D9%88%DA%AF%D8%B1%D8%A7%D9%81%DB%8C.png",
       title: " Terrain ",
       link: "#a",
@@ -79,61 +81,51 @@ export default function MultyTileLayer() {
     },
     {
       key: 2,
-
       url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUd01fggb9t8iNx-wZwZiUIMjC6uGd6OQeFA&s",
       title: "Teraffic ",
       link: "#b",
       quickAccess: true,
-
       funk: alarm,
     },
     {
       key: 3,
-
       url: "https://www.labege.fr/wp-content/uploads/2018/08/bus-scolaire.jpg",
       title: " Transit ",
       link: "#c",
       quickAccess: true,
-
       funk: alarm,
     },
     {
       key: 4,
-
       url: "https://cdn.prod.website-files.com/5b44edefca321a1e2d0c2aa6/5f61480845b551637e3c3969_Dimensions-Transport-Bicycles-Fixed-Gear-Bicycle-Fixie-Icon.svg",
       title: "Biking",
       link: "#d",
       quickAccess: true,
-
       funk: alarm,
     },
     {
       key: 5,
-
       url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUpJTpd0c51OCliwq1n2NIWX5NjHyx0jpBhomwUyDrdA&s",
       title: "More",
       link: "#e",
       quickAccess: true,
-
       funk: togleMore,
     },
     {
       key: 6,
-
       url: "https://cdn.prod.website-files.com/5b44edefca321a1e2d0c2aa6/5f61480845b551637e3c3969_Dimensions-Transport-Bicycles-Fixed-Gear-Bicycle-Fixie-Icon.svg",
       title: "Biking",
-      link: "#d",
+      link: "#g",
       quickAccess: false,
       funk: alarm,
     },
     {
       key: 7,
-
       url: "https://cdn.prod.website-files.com/5b44edefca321a1e2d0c2aa6/5f61480845b551637e3c3969_Dimensions-Transport-Bicycles-Fixed-Gear-Bicycle-Fixie-Icon.svg",
       title: "Biking",
-      link: "#d",
+      link: "#h",
       quickAccess: false,
-      func: alarm,
+      funk: alarm,
     },
   ];
   const quickAccessItems = items.filter((item) => {
@@ -145,7 +137,7 @@ export default function MultyTileLayer() {
   function DisplayMoreItems(props) {
     return (
       <>
-        {props.options.map((item) => {
+        {props.options.map((item, index) => {
           return (
             <>
               <div onClick={item.funk} className="hoverItems" key={item.key}>
@@ -168,7 +160,7 @@ export default function MultyTileLayer() {
   }
 
   return (
-    <>
+    <div ref={divRef}>
       <div
         id="baseDiv"
         onClick={togleMap}
@@ -245,6 +237,33 @@ export default function MultyTileLayer() {
           </div>
         </>
       ) : null}
-    </>
+       {/* <Drawer
+       id="moreDiv"
+        variant="persistent"
+        anchor="right"
+        open={more}
+      ><h4 className="moretext"> BASE MAPS : </h4>
+      <div onClick={togleMore} id="closeMoreDiv">
+        X
+      </div>
+
+      <div className={satActive} onClick={togleToSatMap}>
+        <div id="satelliteMoreStyle"></div>
+        <h4 className={` baseMapSubtitle `}> satellite</h4>
+      </div>
+
+      <div className={openActive} onClick={togleToOpenMap}>
+        <div id="openStreetMoreStyle"></div>
+        <h4 className={` baseMapSubtitle `}>open-street</h4>
+      </div>
+
+      <span className="span"></span>
+
+      <h4 className="moretext"> MORE MAPS LAYERS : </h4>
+      <DisplayMoreItems options={moreDivItems} />
+
+      <span className="span"></span>
+      <h4 className="moretext"> MAP POINTS : </h4></Drawer> */}
+    </div>
   );
 }
