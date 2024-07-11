@@ -5,7 +5,6 @@ import MultyTileLayer from "./components/LayerChanger/MultyTileLayer.tsx";
 import DeviceLocation from "./components/CurentLocation/DeviceLocation.tsx";
 import AdressTextField from "./components/Search&Menu/AdressTextField.tsx";
 import RouteFindingMenu from "./components/Tracker/RouteFindingMenu.tsx";
-import Test from "./components/Test.tsx";
 
 export const RouteContext = createContext<number[] | null>(null);
 
@@ -52,7 +51,6 @@ function App() {
      <ScaleControl imperial={false} position="bottomright" />
      <AdressTextField />
      <RouteFindingMenu />
-     {/* <Test /> */}
     </MapContainer>
    </RouteContext.Provider>
   </>
