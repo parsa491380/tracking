@@ -5,7 +5,7 @@ import { Polyline } from "react-leaflet";
 import RouteDisplayer from "./RouteDisplayer.tsx";
 
 export default function PolylineAnalizer() {
- const { firstLoc, secondLoc, data, setData, routingType } =
+ const { firstLoc, secondLoc, data, setData, routingType, reverser } =
   useContext(RouteContext);
 
  const routeGeter = () => {
@@ -53,7 +53,7 @@ export default function PolylineAnalizer() {
   if (firstLoc && secondLoc && routingType) {
    routeGeter();
   }
- }, [firstLoc, routingType]);
+ }, [firstLoc, routingType, reverser]);
 
  return <>{data ? <RouteDisplayer /> : null}</>;
 }

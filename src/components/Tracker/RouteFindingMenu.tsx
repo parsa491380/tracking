@@ -1,5 +1,11 @@
 // default component imports
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, {
+ createContext,
+ useContext,
+ useEffect,
+ useRef,
+ useState,
+} from "react";
 import GetLocByClick from "./GetLocByClick.tsx";
 import { RouteContext } from "../../App.tsx";
 import { useMap } from "react-leaflet";
@@ -25,10 +31,10 @@ import "../../Assets/Styles/RouteFindingMenu.css";
 
 // main code
 export default function RouteFindingMenu() {
- const [reverser, setReverser] = useState<boolean>(true);
-
  const [openLocMenu, setOpenLocMenu] = useState<boolean>(false);
  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+ const [reverser, setReverser] = useState<boolean>(true);
+
  const {
   firstLoc,
   setFirstLoc,
@@ -37,6 +43,7 @@ export default function RouteFindingMenu() {
   setData,
   setRoutingType,
   routingType,
+  setRoutingDetailEnable,
  } = useContext(RouteContext);
 
  const open = Boolean(anchorEl);
@@ -78,6 +85,7 @@ export default function RouteFindingMenu() {
   setFirstLoc(secondLoc);
   setSecondtLoc(swap);
   setReverser(!reverser);
+  setRoutingDetailEnable(false);
  };
  return (
   <div ref={divRef}>

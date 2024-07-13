@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -11,11 +11,20 @@ import { RouteContext } from "../../App.tsx";
 import "../../Assets/Styles/RouteDisplayer.css";
 
 export default function RouteDisplayer() {
- const [routingDetailEnable, setRoutingDetailEnable] = useState<boolean>(false);
-
  // impost of variables from app.tsx context ;
- const { firstLoc, secondLoc, data, selectedRoute, setSelectedRoute } =
-  useContext(RouteContext);
+ const {
+  firstLoc,
+  secondLoc,
+  data,
+  selectedRoute,
+  setSelectedRoute,
+  routingDetailEnable,
+  setRoutingDetailEnable,
+ } = useContext(RouteContext);
+
+ //  useEffect(() => {
+ //   console.log(routingDetailEnable);
+ //  }, [reverser]);
 
  // the check of the data , visually in the console ;
 
@@ -55,8 +64,6 @@ export default function RouteDisplayer() {
    setRoutingDetailEnable(true);
    positions = [];
   };
-
-  // just for checking commit
 
   return (
    <>
