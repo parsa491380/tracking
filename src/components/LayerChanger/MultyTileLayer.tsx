@@ -18,8 +18,7 @@ export default function MultyTileLayer() {
   transit: "https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png",
  };
  const vectorLayer = {
-  blackRoad:
-   "https://tiles.stadiamaps.com/tiles/stamen_terrain_lines/{z}/{x}/{y}{r}.{ext}",
+  blackRoad: "https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png",
  };
 
  const [mapNumber, setMapNumber] = useState<number>(2);
@@ -91,7 +90,7 @@ export default function MultyTileLayer() {
   {
    key: 2,
    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUd01fggb9t8iNx-wZwZiUIMjC6uGd6OQeFA&s",
-   title: "Teraffic ",
+   title: "metro",
    link: "#b",
    quickAccess: true,
    funk: () => {
