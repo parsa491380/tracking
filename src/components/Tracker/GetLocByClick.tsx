@@ -1,11 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import { Marker, Polyline, Popup, useMap, useMapEvents } from "react-leaflet";
-import L from "leaflet";
+import { Marker, Popup, useMap, useMapEvents } from "react-leaflet";
 import { RouteContext } from "../../App.tsx";
-import { Button, IconButton, Snackbar } from "@mui/material";
-// import zIndex from "@mui/material/styles/zIndex";
+import { IconButton, Snackbar } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-export default function GetLocByClick() {
+
+export default function GetLocByClick(prop) {
  const [open, setOpen] = React.useState(false);
  const { firstLoc, setFirstLoc, secondLoc, setSecondtLoc } =
   useContext(RouteContext);
@@ -51,26 +50,6 @@ export default function GetLocByClick() {
    }
   },
  });
- //  map.on("moveend", function () {
- //   console.log(map.getBounds());
- //   var bounds = L.latLngBounds(secondLoc, firstLoc);
- //   map.fitBounds(bounds);
- //  });
-
- let startLocIcon = new L.Icon({
-  iconUrl:
-   "https://cdn.iconscout.com/icon/premium/png-512-thumb/location-1889633-1597707.png?f=webp&w=256",
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
-  popupAnchor: [0, -20],
- });
- const endLocIcon = new L.Icon({
-  iconUrl:
-   "https://cdn.iconscout.com/icon/premium/png-512-thumb/location-2630805-2176233.png?f=webp&w=256",
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
-  popupAnchor: [0, -20],
- });
  return (
   <>
    <Snackbar
@@ -88,12 +67,12 @@ export default function GetLocByClick() {
     action={action}
    />
    {firstLoc ? (
-    <Marker position={firstLoc} icon={startLocIcon}>
+    <Marker position={firstLoc} icon={prop.prop.startLocIcon}>
      <Popup> مبدا </Popup>
     </Marker>
    ) : null}
    {secondLoc ? (
-    <Marker position={secondLoc} icon={endLocIcon}>
+    <Marker position={secondLoc} icon={prop.prop.endLocIcon}>
      <Popup> مقصد </Popup>
     </Marker>
    ) : null}

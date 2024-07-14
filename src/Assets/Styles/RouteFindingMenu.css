@@ -55,7 +55,7 @@ svg.disabled {
 .adressInput {
  width: 250px;
  height: 40px;
- padding: 5px;
+ padding: 8px;
  margin: 0px 0px 0px 5px;
  border: 2px solid #62cefc;
  border-radius: 10px;
@@ -66,10 +66,13 @@ h3 {
 
 .inputDiv {
  width: 350px;
- margin: 0px 0px 0px 5px;
+ margin: 0px 0px 0px 0px;
  padding: 10px;
 }
-
+.img {
+ width: 30px;
+ height: 30px;
+}
 .IconButton {
  background-color: #daf1fc;
 }

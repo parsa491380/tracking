@@ -92,8 +92,6 @@ export default function DetaiedRouteOptions(prop) {
 
  const Generator = () => {
   if (index === 0) {
-   console.log(!step.maneuver.modifier);
-
    return (
     <div onMouseOver={mouseOver} onMouseOut={mouseOut}>
      <Card className="card">

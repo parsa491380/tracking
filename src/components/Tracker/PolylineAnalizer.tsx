@@ -3,6 +3,7 @@ import { RouteContext } from "../../App.tsx";
 import axios from "axios";
 // import { Polyline } from "react-leaflet";
 import RouteDisplayer from "./RouteDisplayer.tsx";
+import { CircularProgress } from "@mui/material";
 
 export default function PolylineAnalizer() {
  const { firstLoc, secondLoc, data, setData, routingType, reverser } =
@@ -54,5 +55,16 @@ export default function PolylineAnalizer() {
   }
  }, [firstLoc, routingType, reverser]);
 
- return <>{data ? <RouteDisplayer /> : null}</>;
+ return (
+  <>
+   {firstLoc && secondLoc && !data ? (
+    <CircularProgress
+     sx={{
+      m: "150px",
+     }}
+    />
+   ) : null}
+   {data ? <RouteDisplayer /> : null}
+  </>
+ );
 }

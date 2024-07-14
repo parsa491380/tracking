@@ -10,24 +10,22 @@ import "../../Assets/Styles/DeviceLocation.css";
 export default function DeviceLocation() {
  const [position, setPosition] = useState<LatLng | null>(null);
  const divRef = React.useRef(null);
+ const map = useMap();
+
  React.useEffect(() => {
   L.DomEvent.disableClickPropagation(divRef.current);
   L.DomEvent.disableScrollPropagation(divRef.current);
  });
 
- const map = useMap();
-
- map.locate();
- map.once("locationfound", (location) => {
-  setPosition(location.latlng);
- });
+ setInterval(() => {
+  map.locate();
+ }, 1000);
 
  const handleClick = () => {
   map.locate();
   map.once("locationfound", (location) => {
    setPosition(location.latlng);
    map.flyTo(location.latlng);
-   // alert("aaa");
   });
  };
  const startLocIcon = new Icon({

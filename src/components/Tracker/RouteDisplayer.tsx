@@ -11,7 +11,6 @@ import { RouteContext } from "../../App.tsx";
 import "../../Assets/Styles/RouteDisplayer.css";
 
 export default function RouteDisplayer() {
- const [showRoute, setShowRoute] = useState<boolean>(true);
  let positions: number[] = [];
  // impost of variables from app.tsx context ;
  const {
@@ -62,7 +61,6 @@ export default function RouteDisplayer() {
 
   const routeDetail = () => {
    setRoutingDetailEnable(true);
-   setShowRoute(false);
    positions = [];
   };
 
@@ -132,7 +130,7 @@ export default function RouteDisplayer() {
      </>
     ) : null}
 
-    {showRoute ? (
+    {!routingDetailEnable ? (
      <Polyline
       positions={positions}
       color={selectedRoute === index ? "#0400ff" : "#ff004c73"}

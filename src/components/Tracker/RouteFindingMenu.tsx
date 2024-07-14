@@ -26,7 +26,7 @@ import PlaceIcon from "@mui/icons-material/Place";
 import DirectionsIcon from "@mui/icons-material/Directions";
 import PersonPinCircleIcon from "@mui/icons-material/PersonPinCircle";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
-import { IconButton } from "@mui/material";
+import { Icon, IconButton } from "@mui/material";
 import "../../Assets/Styles/RouteFindingMenu.css";
 
 // main code
@@ -88,6 +88,22 @@ export default function RouteFindingMenu() {
   setReverser(!reverser);
   setRoutingDetailEnable(false);
  };
+
+ let startLocIcon = new L.Icon({
+  iconUrl:
+   "https://cdn.iconscout.com/icon/premium/png-512-thumb/location-1889633-1597707.png?f=webp&w=256",
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
+  popupAnchor: [0, -20],
+ });
+ const endLocIcon = new L.Icon({
+  iconUrl:
+   "https://cdn.iconscout.com/icon/premium/png-512-thumb/location-2630805-2176233.png?f=webp&w=256",
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
+  popupAnchor: [0, -20],
+ });
+
  return (
   <div ref={divRef}>
    {openLocMenu === false ? (
@@ -143,41 +159,47 @@ export default function RouteFindingMenu() {
     open={openLocMenu}
    >
     <div id="iconGroupContainer">
-     {/* <IconButton className="IconButton"> */}
      <DirectionsSubwayIcon className="disabled" />
      <DirectionsCarIcon
       className={routingType === "car" ? "iconGroup active" : "iconGroup"}
       onClick={() => {
        setRoutingType("car");
+       setRoutingDetailEnable(false);
       }}
-     />{" "}
+     />
      <DirectionsWalkIcon
       className={routingType === "foot" ? "iconGroup active" : "iconGroup"}
       onClick={() => {
        setRoutingType("foot");
+       setRoutingDetailEnable(false);
       }}
-     />{" "}
+     />
      <DirectionsBikeIcon
       className={routingType === "bike" ? "iconGroup active" : "iconGroup"}
       onClick={() => {
        setRoutingType("bike");
+       setRoutingDetailEnable(false);
       }}
-     />{" "}
+     />
      <AirplanemodeActiveIcon className="disabled" />{" "}
      <CloseIcon
       onClick={handleClose}
       className="iconGroup "
       titleAccess="cancel and close routing"
-     />{" "}
-     {/* </IconButton> */}
+     />
      <SwapVertIcon
       id="reverseLoc"
       onClick={reverseRoute}
       titleAccess="swap the start and destination"
-     />{" "}
+     />
      <div className="inputDiv">
-      <PlaceIcon />
-      <h3> . . . . . </h3>
+      <img
+       className="img"
+       src="https://cdn.iconscout.com/icon/premium/png-512-thumb/location-1889633-1597707.png?f=webp&w=256"
+       alt="start location icon"
+      />
+
+      <h3> . . . . </h3>
       <input
        type="text"
        className="adressInput"
@@ -187,8 +209,12 @@ export default function RouteFindingMenu() {
       />
      </div>
      <div className="inputDiv">
-      <PlaceIcon />
-      <h3> . . . . . </h3>
+      <img
+       className="img"
+       src="https://cdn.iconscout.com/icon/premium/png-512-thumb/location-2630805-2176233.png?f=webp&w=256"
+       alt="start location icon"
+      />
+      <h3> . . . . </h3>
       <input
        type="text"
        className="adressInput"
@@ -206,7 +232,9 @@ export default function RouteFindingMenu() {
     </div>
     <PolylineAnalizer />
    </Drawer>
-   {openLocMenu === true ? <GetLocByClick /> : null}
+   {openLocMenu === true ? (
+    <GetLocByClick prop={{ startLocIcon, endLocIcon }} />
+   ) : null}
   </div>
  );
 }
