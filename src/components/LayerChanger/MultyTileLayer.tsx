@@ -5,7 +5,27 @@ import "../../Assets/Styles/MultyTileLayer.css";
 import L from "leaflet";
 
 export default function MultyTileLayer() {
- const [mapNumber, setMapNumber] = useState<number>(1);
+ const layers = {
+  google: "https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}",
+
+  open: "https://www.google.cn/maps/vt?lyrs=y@189&gl=cn&x={x}&y={y}&z={z}",
+
+  dark:
+   "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png",
+
+  terrian: "https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
+
+  transit: "https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png",
+ };
+ const vectorLayer = {
+  blackRoad:
+   "https://tiles.stadiamaps.com/tiles/stamen_terrain_lines/{z}/{x}/{y}{r}.{ext}",
+ };
+
+ const [mapNumber, setMapNumber] = useState<number>(2);
+ const [layerUrl, setLayerUrl] = useState(layers.open);
+ const [vectorLayerUrl, setVectorLayerUrl] = useState<string | null>(null);
+
  const [hover, setHover] = useState<boolean>(false);
  const [more, setMore] = useState<boolean>(false);
  const [satActive, setSatActive] = useState<string>("inactive");
@@ -21,11 +41,13 @@ export default function MultyTileLayer() {
   setMapNumber(2);
   setSatActive("active");
   setOpenActive("inactive");
+  setLayerUrl(layers.open);
  };
  const togleToOpenMap = () => {
   setMapNumber(1);
   setSatActive("inactive");
   setOpenActive("active");
+  setLayerUrl(layers.google);
  };
 
  const togleMap = () => {
@@ -47,11 +69,6 @@ export default function MultyTileLayer() {
    setHover(false);
   }, 1000);
  };
-
- const alarm = () => {
-  alert(" My Alarm ");
- };
-
  const togleMore = () => {
   if (more === true) {
    setMore(false);
@@ -60,15 +77,6 @@ export default function MultyTileLayer() {
   }
   setHover(false);
  };
-
- const layers = {
-  google: "https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}",
-
-  open: "https://www.google.cn/maps/vt?lyrs=y@189&gl=cn&x={x}&y={y}&z={z}",
-
-  dark:
-   "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png",
- };
  const items = [
   {
    key: 1,
@@ -76,7 +84,9 @@ export default function MultyTileLayer() {
    title: " Terrain ",
    link: "#a",
    quickAccess: true,
-   funk: alarm,
+   funk: () => {
+    setLayerUrl(layers.terrian);
+   },
   },
   {
    key: 2,
@@ -84,7 +94,9 @@ export default function MultyTileLayer() {
    title: "Teraffic ",
    link: "#b",
    quickAccess: true,
-   funk: alarm,
+   funk: () => {
+    setVectorLayerUrl(vectorLayer.blackRoad);
+   },
   },
   {
    key: 3,
@@ -92,7 +104,9 @@ export default function MultyTileLayer() {
    title: " Transit ",
    link: "#c",
    quickAccess: true,
-   funk: alarm,
+   funk: () => {
+    setLayerUrl(layers.transit);
+   },
   },
   {
    key: 4,
@@ -100,7 +114,9 @@ export default function MultyTileLayer() {
    title: "Biking",
    link: "#d",
    quickAccess: true,
-   funk: alarm,
+   funk: () => {
+    alert(" My Alarm ");
+   },
   },
   {
    key: 5,
@@ -116,7 +132,9 @@ export default function MultyTileLayer() {
    title: "cycling",
    link: "#g",
    quickAccess: false,
-   funk: alarm,
+   funk: () => {
+    alert(" My Alarm ");
+   },
   },
   {
    key: 7,
@@ -124,9 +142,12 @@ export default function MultyTileLayer() {
    title: "motoring",
    link: "#h",
    quickAccess: false,
-   funk: alarm,
+   funk: () => {
+    alert(" My Alarm ");
+   },
   },
  ];
+
  const quickAccessItems = items.filter((item) => {
   return item.quickAccess === true;
  });
@@ -162,10 +183,12 @@ export default function MultyTileLayer() {
     onMouseOver={onMouseOver}
     onMouseOut={onHoverOut}
    >
+    <TileLayer url={layerUrl} />
+    {vectorLayerUrl ? <TileLayer url={vectorLayerUrl} /> : null}
+
     {mapNumber === 1 ? (
      <div id="satelliteStyle">
       <center className="center">
-       <TileLayer url={layers.google} />
        {hover === false ? (
         <>
          <LayersIcon className="LayersIcon" />
@@ -179,7 +202,6 @@ export default function MultyTileLayer() {
     ) : (
      <div id="openStreetStyle">
       <center className="center">
-       <TileLayer url={layers.open} />
        {hover === false ? (
         <>
          <LayersIcon className="LayersIcon" />

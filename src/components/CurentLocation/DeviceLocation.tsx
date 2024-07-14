@@ -28,7 +28,7 @@ export default function DeviceLocation() {
    map.flyTo(location.latlng);
   });
  };
- const startLocIcon = new Icon({
+ const deviceLocIcon = new Icon({
   iconUrl:
    "https://static-00.iconduck.com/assets.00/person-pin-circle-icon-417x512-ex8n0giz.png",
   iconSize: [30, 30],
@@ -47,7 +47,7 @@ export default function DeviceLocation() {
     <GpsFixedIcon id="icon" />
    </button>
    {position === null ? null : (
-    <Marker position={position} icon={startLocIcon} id="locIcon">
+    <Marker position={position} icon={deviceLocIcon} id="locIcon">
      <Popup>You are here</Popup>
     </Marker>
    )}
