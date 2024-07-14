@@ -51,6 +51,11 @@ export default function GetLocByClick() {
    }
   },
  });
+ //  map.on("moveend", function () {
+ //   console.log(map.getBounds());
+ //   var bounds = L.latLngBounds(secondLoc, firstLoc);
+ //   map.fitBounds(bounds);
+ //  });
 
  let startLocIcon = new L.Icon({
   iconUrl:

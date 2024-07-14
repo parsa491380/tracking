@@ -11,6 +11,8 @@ import { RouteContext } from "../../App.tsx";
 import "../../Assets/Styles/RouteDisplayer.css";
 
 export default function RouteDisplayer() {
+ const [showRoute, setShowRoute] = useState<boolean>(true);
+ let positions: number[] = [];
  // impost of variables from app.tsx context ;
  const {
   firstLoc,
@@ -22,10 +24,6 @@ export default function RouteDisplayer() {
   setRoutingDetailEnable,
  } = useContext(RouteContext);
 
- //  useEffect(() => {
- //   console.log(routingDetailEnable);
- //  }, [reverser]);
-
  // the check of the data , visually in the console ;
 
  // the main part of rendered component that will be maped into the return part ;
@@ -35,13 +33,15 @@ export default function RouteDisplayer() {
   let item = route.route.item;
 
   // nessecary function beacause OSRM object sends lnglat object ( revers of latlng )
-  let positions: number[] = [];
+  // let positions: number[] = [];
   let help;
-  item.geometry.coordinates.map((item: number[]) => {
-   help = [item[1], item[0]];
-   positions.push(help);
-  });
 
+  if ((positions = [])) {
+   item.geometry.coordinates.map((item: number[]) => {
+    help = [item[1], item[0]];
+    positions.push(help);
+   });
+  }
   // extraction and collect of the important way points of the routs from summary obj of the response ;
   let text: string[] = [];
   text.push(item.legs[0].summary);
@@ -62,6 +62,7 @@ export default function RouteDisplayer() {
 
   const routeDetail = () => {
    setRoutingDetailEnable(true);
+   setShowRoute(false);
    positions = [];
   };
 
@@ -131,7 +132,7 @@ export default function RouteDisplayer() {
      </>
     ) : null}
 
-    {positions ? (
+    {showRoute ? (
      <Polyline
       positions={positions}
       color={selectedRoute === index ? "#0400ff" : "#ff004c73"}
@@ -166,7 +167,7 @@ export default function RouteDisplayer() {
   <>
    {data !== null
     ? data.map((item, index) => {
-       return <Options route={{ item, index }} />;
+       return <Options route={{ item, index }} key={index} />;
       })
     : null}
   </>

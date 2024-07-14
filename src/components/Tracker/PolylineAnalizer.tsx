@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { RouteContext } from "../../App.tsx";
 import axios from "axios";
-import { Polyline } from "react-leaflet";
+// import { Polyline } from "react-leaflet";
 import RouteDisplayer from "./RouteDisplayer.tsx";
 
 export default function PolylineAnalizer() {
@@ -28,14 +28,13 @@ export default function PolylineAnalizer() {
   // here is an example of this standard format :
 
   // ("http://router.project-osrm.org/route/v1/car/13.388860,52.517037;13.397634,52.529407;13.428555,52.523219?alternatives=3&steps=true&geometries=polyline&overview=simplified&annotations=true");
-  console.log(routingType);
 
   axios
    .get(
     `http://router.project-osrm.org/route/v1/${routingType}/${firstLoc.lng},${firstLoc.lat};${secondLoc.lng},${secondLoc.lat}?alternatives=3&steps=true&geometries=geojson&overview=full&annotations=true`
    )
    .then((response) => {
-    console.log(response.data);
+    // console.log(response.data);
 
     if (response.data.code === "Ok") {
      setData(response.data.routes);

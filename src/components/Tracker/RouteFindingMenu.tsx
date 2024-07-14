@@ -64,6 +64,7 @@ export default function RouteFindingMenu() {
   setFirstLoc(null);
   setData(null);
   setOpenLocMenu(false);
+  setRoutingDetailEnable(false);
  };
  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
   setAnchorEl(event.currentTarget);
@@ -142,38 +143,38 @@ export default function RouteFindingMenu() {
     open={openLocMenu}
    >
     <div id="iconGroupContainer">
-     <IconButton id="IconButton">
-      <DirectionsSubwayIcon className="disabled" />
-      <DirectionsCarIcon
-       className={routingType === "car" ? "iconGroup active" : "iconGroup"}
-       onClick={() => {
-        setRoutingType("car");
-       }}
-      />
-      <DirectionsWalkIcon
-       className={routingType === "foot" ? "iconGroup active" : "iconGroup"}
-       onClick={() => {
-        setRoutingType("foot");
-       }}
-      />
-      <DirectionsBikeIcon
-       className={routingType === "bike" ? "iconGroup active" : "iconGroup"}
-       onClick={() => {
-        setRoutingType("bike");
-       }}
-      />
-      <AirplanemodeActiveIcon className="disabled" />
-      <CloseIcon
-       onClick={handleClose}
-       className="iconGroup "
-       titleAccess="cancel and close routing"
-      />
-     </IconButton>
+     {/* <IconButton className="IconButton"> */}
+     <DirectionsSubwayIcon className="disabled" />
+     <DirectionsCarIcon
+      className={routingType === "car" ? "iconGroup active" : "iconGroup"}
+      onClick={() => {
+       setRoutingType("car");
+      }}
+     />{" "}
+     <DirectionsWalkIcon
+      className={routingType === "foot" ? "iconGroup active" : "iconGroup"}
+      onClick={() => {
+       setRoutingType("foot");
+      }}
+     />{" "}
+     <DirectionsBikeIcon
+      className={routingType === "bike" ? "iconGroup active" : "iconGroup"}
+      onClick={() => {
+       setRoutingType("bike");
+      }}
+     />{" "}
+     <AirplanemodeActiveIcon className="disabled" />{" "}
+     <CloseIcon
+      onClick={handleClose}
+      className="iconGroup "
+      titleAccess="cancel and close routing"
+     />{" "}
+     {/* </IconButton> */}
      <SwapVertIcon
       id="reverseLoc"
       onClick={reverseRoute}
       titleAccess="swap the start and destination"
-     />
+     />{" "}
      <div className="inputDiv">
       <PlaceIcon />
       <h3> . . . . . </h3>
