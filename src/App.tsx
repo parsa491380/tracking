@@ -5,9 +5,8 @@ import MultyTileLayer from "./components/LayerChanger/MultyTileLayer.tsx";
 import DeviceLocation from "./components/CurentLocation/DeviceLocation.tsx";
 import AdressTextField from "./components/Search&Menu/AdressTextField.tsx";
 import RouteFindingMenu from "./components/Tracker/RouteFindingMenu.tsx";
-import Test from "./components/Test.tsx";
 
-export const RouteContext = createContext<number[] | null>(null);
+export const RouteContext = createContext(null);
 
 function App() {
  const position: number[] = [35.68744237931978, 51.38374328613281]; // [latitude, longitude]
@@ -16,6 +15,7 @@ function App() {
  const [data, setData] = useState(null);
  const [selectedRoute, setSelectedRoute] = useState<number>(0);
  const [routingType, setRoutingType] = useState("car");
+ const [routingDetailEnable, setRoutingDetailEnable] = useState<boolean>(false);
 
  return (
   <>
@@ -31,6 +31,8 @@ function App() {
      setSelectedRoute,
      routingType,
      setRoutingType,
+     routingDetailEnable,
+     setRoutingDetailEnable,
     }}
    >
     <MapContainer
@@ -52,7 +54,6 @@ function App() {
      <ScaleControl imperial={false} position="bottomright" />
      <AdressTextField />
      <RouteFindingMenu />
-     {/* <Test /> */}
     </MapContainer>
    </RouteContext.Provider>
   </>
