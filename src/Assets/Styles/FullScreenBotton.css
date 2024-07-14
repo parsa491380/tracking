@@ -7,10 +7,10 @@
  z-index: 99999;
  /* padding: 1px; */
  align-items: center;
- background-color: #0ab6ff;
- color: white;
- border: 1px solid #ccc;
- border-radius: 7px;
+ background-color: white;
+ color: #0ab6ff;
+ border: 1px solid #0ab6ff;
+ border-radius: 5px;
  cursor: pointer;
 }
 .icon {

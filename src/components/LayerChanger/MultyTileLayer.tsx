@@ -21,8 +21,8 @@ export default function MultyTileLayer() {
   blackRoad: "https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png",
  };
 
- const [mapNumber, setMapNumber] = useState<number>(2);
- const [layerUrl, setLayerUrl] = useState(layers.open);
+ const [mapNumber, setMapNumber] = useState<number>(1);
+ const [layerUrl, setLayerUrl] = useState(layers.google);
  const [vectorLayerUrl, setVectorLayerUrl] = useState<string | null>(null);
 
  const [hover, setHover] = useState<boolean>(false);
@@ -89,8 +89,8 @@ export default function MultyTileLayer() {
   },
   {
    key: 2,
-   url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUd01fggb9t8iNx-wZwZiUIMjC6uGd6OQeFA&s",
-   title: "metro",
+   url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVHSutzc9_Y8hdNk5KdRUA7ofFleYrrYHzrw&s",
+   title: "train",
    link: "#b",
    quickAccess: true,
    funk: () => {
@@ -109,12 +109,12 @@ export default function MultyTileLayer() {
   },
   {
    key: 4,
-   url: "https://cdn.prod.website-files.com/5b44edefca321a1e2d0c2aa6/5f61480845b551637e3c3969_Dimensions-Transport-Bicycles-Fixed-Gear-Bicycle-Fixie-Icon.svg",
-   title: "Biking",
+   url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnWD5JG36hXD349vgUn0dPfl7MPMGni1dalA&s",
+   title: "dark",
    link: "#d",
    quickAccess: true,
    funk: () => {
-    alert(" My Alarm ");
+    setLayerUrl(layers.dark);
    },
   },
   {

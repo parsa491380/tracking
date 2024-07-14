@@ -5,7 +5,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import SideMenu from "./SideMenu.tsx";
 import "../../Assets/Styles/AdressTextField.css";
 import L from "leaflet";
-// import Test from "./Test.tsx";
 
 export default function AdressTextField() {
  const divRef = useRef(null);

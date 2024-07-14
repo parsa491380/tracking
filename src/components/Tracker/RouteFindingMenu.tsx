@@ -121,7 +121,6 @@ export default function RouteFindingMenu() {
       sx={{
        pointerEvents: "none",
        left: 6,
-       borderRadius: "50%",
       }}
       open={open}
       anchorEl={anchorEl}
@@ -136,7 +135,7 @@ export default function RouteFindingMenu() {
       onClose={handlePopoverClose}
       disableRestoreFocus
      >
-      <Typography sx={{ p: 1, color: "#0ab6ff", borderRadius: "200px" }}>
+      <Typography sx={{ p: 1, color: "#0ab6ff", height: "40px" }}>
        ROUTING
       </Typography>
      </Popover>
