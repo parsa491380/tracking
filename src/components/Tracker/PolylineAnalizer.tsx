@@ -4,10 +4,11 @@ import axios from "axios";
 // import { Polyline } from "react-leaflet";
 import RouteDisplayer from "./RouteDisplayer.tsx";
 import { CircularProgress } from "@mui/material";
+import type context from "../../Types/context.ts";
 
-export default function PolylineAnalizer() {
- const { firstLoc, secondLoc, data, setData, routingType, reverser } =
-  useContext(RouteContext);
+export default function PolylineAnalizer(reverser) {
+ const { firstLoc, secondLoc, data, setData, routingType } =
+  useContext<context>(RouteContext);
 
  const routeGeter = () => {
   // the following is the standard format of OSRM for routing requests :
@@ -35,7 +36,7 @@ export default function PolylineAnalizer() {
     `http://router.project-osrm.org/route/v1/${routingType}/${firstLoc.lng},${firstLoc.lat};${secondLoc.lng},${secondLoc.lat}?alternatives=3&steps=true&geometries=geojson&overview=full&annotations=true`
    )
    .then((response) => {
-    // console.log(response.data);
+    console.log(response.data);
 
     if (response.data.code === "Ok") {
      setData(response.data.routes);
@@ -53,7 +54,7 @@ export default function PolylineAnalizer() {
   if (firstLoc && secondLoc && routingType) {
    routeGeter();
   }
- }, [firstLoc, routingType, reverser]);
+ }, [firstLoc, routingType, reverser.reverser]);
 
  return (
   <>

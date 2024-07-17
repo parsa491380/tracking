@@ -229,7 +229,7 @@ export default function RouteFindingMenu() {
       <h3>GO TO YOUR LOCATION</h3>
      </div>
     </div>
-    <PolylineAnalizer />
+    <PolylineAnalizer reverser={reverser} />
    </Drawer>
    {openLocMenu === true ? (
     <GetLocByClick prop={{ startLocIcon, endLocIcon }} />

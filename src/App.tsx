@@ -5,14 +5,16 @@ import MultyTileLayer from "./components/LayerChanger/MultyTileLayer.tsx";
 import DeviceLocation from "./components/CurentLocation/DeviceLocation.tsx";
 import AdressTextField from "./components/Search&Menu/AdressTextField.tsx";
 import RouteFindingMenu from "./components/Tracker/RouteFindingMenu.tsx";
+import type data from "./Types/response.ts";
+import type context from "./Types/context.ts";
 
-export const RouteContext = createContext(null);
+export const RouteContext = createContext<context | null>(null);
 
 function App() {
  const position: number[] = [35.68744237931978, 51.38374328613281]; // [latitude, longitude]
  const [firstLoc, setFirstLoc] = useState<number[] | null>(null);
  const [secondLoc, setSecondtLoc] = useState<number[] | null>(null);
- const [data, setData] = useState(null);
+ const [data, setData] = useState<data | null>(null);
  const [selectedRoute, setSelectedRoute] = useState<number>(0);
  const [routingType, setRoutingType] = useState("car");
  const [routingDetailEnable, setRoutingDetailEnable] = useState<boolean>(false);
