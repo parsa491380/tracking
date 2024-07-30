@@ -51,7 +51,6 @@ export default function SideMenu(open) {
      edge="start"
      sx={{
       mr: 2,
-      //  ...(openSideMenu && { display: "none" })
      }}
     >
      <MenuIcon />

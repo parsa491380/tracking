@@ -4,33 +4,30 @@ import "../../Assets/Styles/DetailedRoute.css";
 import DetaiedRouteOptions from "./DetaiedRouteOptions.tsx";
 import context from "../../Types/context.ts";
 import { RouteContext } from "../../App.tsx";
-import { LatLng, LatLngExpression, LatLngTuple } from "leaflet";
 export default function DetailedRoute(item) {
+ const [hover, setHover] = useState();
+
  const { setFirstLoc } = useContext<context>(RouteContext);
  const [fakePosition, setFakePositions] = useState<number[][]>([]);
  const leg = item.item.legs[0];
 
  const positionFaker = () => {
-  leg.steps.map((item) => {
-   setFakePositions(
-    item.geometry.coordinates[item.geometry.coordinates.length - 1]
-   );
-  });
+  //   console.log(
+  //    leg.steps.map((step, index) => {
+  //     return <DetaiedRouteOptions prop={{ step, index }} key={index} />;
+  //    })
+  //   );
+  //   leg.steps.map((item) => {
+  //    setFakePositions(
+  //     item.geometry.coordinates[item.geometry.coordinates.length - 1]
+  //    );
+  //   });
+  console.log(fakePosition);
  };
- let help: LatLngTuple[] = [];
+ let help = [];
  fakePosition.map((item) => {
   help.push([item[1], item[0]]);
  });
- let int = setInterval(() => {
-  if (help.length) {
-   setFirstLoc(help[0]);
-   help = help.shift();
-
-   if (help.length !== 0) {
-    clearInterval(int);
-   }
-  }
- }, 2000);
 
  function secondsToHms(d) {
   d = Number(d);
@@ -58,7 +55,12 @@ export default function DetailedRoute(item) {
      <Typography> distance : {Math.round(leg.distance / 1000)} Km</Typography>
     </Card>
     {leg.steps.map((step, index) => {
-     return <DetaiedRouteOptions prop={{ step, index }} key={index} />;
+     return (
+      <DetaiedRouteOptions
+       prop={{ step, index, hover, setHover }}
+       key={index}
+      />
+     );
     })}
    </Box>
   </>

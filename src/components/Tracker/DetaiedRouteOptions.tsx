@@ -7,15 +7,18 @@ import TurnSlightLeftIcon from "@mui/icons-material/TurnSlightLeft";
 import StraightIcon from "@mui/icons-material/Straight";
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import RotateLeftIcon from "@mui/icons-material/RotateLeft";
-import { Alert, Card, Typography } from "@mui/material";
+import { Card, Typography } from "@mui/material";
 import { Marker, Polyline, Popup, useMap } from "react-leaflet";
-import L, { LatLngExpression } from "leaflet";
+import L, { LatLngExpression, icon } from "leaflet";
 import "../../Assets/Styles/DetailedRoute.css";
+import { border } from "@mui/system";
 
 export default function DetaiedRouteOptions(prop) {
- const [hover, setHover] = useState<boolean>(false);
  const step = prop.prop.step;
  const index = prop.prop.index;
+ const hover = prop.prop.hover;
+ //  const setHover = prop.prop.setHover();
+
  let help;
  const map = useMap();
  let positions: LatLngExpression[] = [];
@@ -24,13 +27,14 @@ export default function DetaiedRouteOptions(prop) {
   help = [item[1], item[0]];
   positions.push(help);
  });
-
  const focusView = () => {
-  //   console.log("aaaa");
   map.setZoom(16);
 
-  map.flyTo(positions[positions.length - 1]);
-  setHover(true);
+  setTimeout(() => {
+   map.flyTo(positions[positions.length - 1]);
+
+   prop.prop.setHover(index);
+  }, 100);
  };
 
  const IconProvider = (props) => {
@@ -98,7 +102,11 @@ export default function DetaiedRouteOptions(prop) {
   if (index === 0) {
    return (
     <div>
-     <Card className="card" onClick={focusView}>
+     <Card
+      className="card"
+      onClick={focusView}
+      sx={hover === index ? { border: "2px solid red " } : null}
+     >
       <Typography className="typo">
        start your trip from {step.name}{" "}
        {step.maneuver.modifier ? (
@@ -113,7 +121,11 @@ export default function DetaiedRouteOptions(prop) {
   } else if (step.distance === 0) {
    return (
     <div>
-     <Card className="card" onClick={focusView}>
+     <Card
+      className="card"
+      onClick={focusView}
+      sx={hover === index ? { border: "2px solid red " } : null}
+     >
       <Typography className="typo">
        you reached to your destination =))))))
       </Typography>
@@ -123,7 +135,11 @@ export default function DetaiedRouteOptions(prop) {
   } else {
    return (
     <div>
-     <Card className="card" onClick={focusView}>
+     <Card
+      className="card"
+      onClick={focusView}
+      sx={hover === index ? { border: "2px solid red " } : null}
+     >
       <Typography className="typo">
        move {step.distance} meters in {step.name} and then go : <br />
        <IconProvider item={step.maneuver.modifier} />
@@ -133,12 +149,24 @@ export default function DetaiedRouteOptions(prop) {
    );
   }
  };
-
+ //  if (hover) {
+ //   setIconSize([40, 40]);
+ //  }
+ //   else {
+ //    setIconSize([10, 10]);
+ //   }
  let markerIcon = new L.Icon({
   iconUrl:
    "https://cdn.iconscout.com/icon/premium/png-512-thumb/point-3298337-2761106.png?f=webp&w=256",
   iconSize: [10, 10],
   iconAnchor: [5, 5],
+  popupAnchor: [0, -20],
+ });
+ let selectedMarkerIcon = new L.Icon({
+  iconUrl:
+   "https://cdn.iconscout.com/icon/premium/png-512-thumb/place-8280344-6820742.png?f=webp&w=256",
+  iconSize: [40, 40],
+  iconAnchor: [20, 35],
   popupAnchor: [0, -20],
  });
 
@@ -153,7 +181,10 @@ export default function DetaiedRouteOptions(prop) {
      color="blue"
     />
    ) : null}{" "}
-   <Marker position={positions[positions.length - 1]} icon={markerIcon}>
+   <Marker
+    position={positions[positions.length - 1]}
+    icon={hover === index ? selectedMarkerIcon : markerIcon}
+   >
     <Popup> مبدا </Popup>
    </Marker>
   </>
