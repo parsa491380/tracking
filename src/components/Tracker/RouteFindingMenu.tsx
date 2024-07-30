@@ -1,5 +1,6 @@
 // default component imports
 import React, {
+ LegacyRef,
  createContext,
  useContext,
  useEffect,
@@ -22,24 +23,24 @@ import DirectionsSubwayIcon from "@mui/icons-material/DirectionsSubway";
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
 import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive";
-import PlaceIcon from "@mui/icons-material/Place";
 import DirectionsIcon from "@mui/icons-material/Directions";
 import PersonPinCircleIcon from "@mui/icons-material/PersonPinCircle";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
-import { Icon, IconButton } from "@mui/material";
 import "../../Assets/Styles/RouteFindingMenu.css";
 
 // main code
-export default function RouteFindingMenu() {
- const [openLocMenu, setOpenLocMenu] = useState<boolean>(false);
+export default function RouteFindingMenu(prop) {
  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
  const [reverser, setReverser] = useState<boolean>(true);
 
  const {
+  openLocMenu,
+  setOpenLocMenu,
   firstLoc,
   setFirstLoc,
   secondLoc,
   setSecondtLoc,
+  data,
   setData,
   setRoutingType,
   routingType,
@@ -48,15 +49,16 @@ export default function RouteFindingMenu() {
 
  const open = Boolean(anchorEl);
  const map = useMap();
- const divRef = useRef(null);
+ const divRef = useRef<any>();
  useEffect(() => {
   L.DomEvent.disableClickPropagation(divRef.current);
   L.DomEvent.disableScrollPropagation(divRef.current);
- });
+ }, [openLocMenu, firstLoc, data]);
 
  const handleOpen = () => {
   setOpenLocMenu(true);
   handlePopoverClose();
+  prop.prop.setOpenSideMenu(false);
  };
 
  const handleClose = () => {
@@ -90,15 +92,14 @@ export default function RouteFindingMenu() {
  };
 
  let startLocIcon = new L.Icon({
-  iconUrl:
-   "https://cdn.iconscout.com/icon/premium/png-512-thumb/location-1889633-1597707.png?f=webp&w=256",
+  iconUrl: "https://cdn.icon-icons.com/icons2/46/PNG/128/launch_9484.png",
   iconSize: [40, 40],
   iconAnchor: [20, 40],
   popupAnchor: [0, -20],
  });
  const endLocIcon = new L.Icon({
   iconUrl:
-   "https://cdn.iconscout.com/icon/premium/png-512-thumb/location-2630805-2176233.png?f=webp&w=256",
+   "https://cdn.icon-icons.com/icons2/2286/PNG/512/astronaut_flag_space_univers_galaxia_spaceman_rocketman_moon_icon_141226.png",
   iconSize: [40, 40],
   iconAnchor: [20, 40],
   popupAnchor: [0, -20],
@@ -151,6 +152,7 @@ export default function RouteFindingMenu() {
       height: "100%",
       zIndex: 999999,
       boxSizing: "border-box",
+      bgcolor: "#005792",
      },
     }}
     variant="persistent"
@@ -194,7 +196,7 @@ export default function RouteFindingMenu() {
      <div className="inputDiv">
       <img
        className="img"
-       src="https://cdn.iconscout.com/icon/premium/png-512-thumb/location-1889633-1597707.png?f=webp&w=256"
+       src="https://cdn.icon-icons.com/icons2/46/PNG/128/launch_9484.png"
        alt="start location icon"
       />
 
@@ -202,26 +204,20 @@ export default function RouteFindingMenu() {
       <input
        type="text"
        className="adressInput"
-       placeholder={
-        firstLoc === null ? "click the map or type your start adress" : firstLoc
-       }
+       placeholder={firstLoc === null ? "click the map" : `${firstLoc}`}
       />
      </div>
      <div className="inputDiv">
       <img
        className="img"
-       src="https://cdn.iconscout.com/icon/premium/png-512-thumb/location-2630805-2176233.png?f=webp&w=256"
+       src="https://cdn.icon-icons.com/icons2/2286/PNG/512/astronaut_flag_space_univers_galaxia_spaceman_rocketman_moon_icon_141226.png"
        alt="start location icon"
       />
       <h3> . . . . </h3>
       <input
        type="text"
        className="adressInput"
-       placeholder={
-        secondLoc === null
-         ? "click the map or type your destination adress"
-         : secondLoc
-       }
+       placeholder={secondLoc === null ? "click the map" : `${secondLoc}`}
       />
      </div>
      <div id="goTOLocation" onClick={goTOLocation}>

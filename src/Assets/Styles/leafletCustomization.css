@@ -2,13 +2,13 @@
   margin: 0 !important;
 } */
 .leaflet-bar a {
- color: #0ab6ff;
- background-color: white;
+ color: white;
+ background-color: #005792;
 }
 
 .leaflet-control-zoom-in,
 .leaflet-control-zoom-out {
- color: #0ab6ff;
+ color: #005792;
 }
 .leaflet-control-zoom {
  right: 15px;
@@ -41,7 +41,7 @@
 }
 .leaflet-touch .leaflet-control-layers,
 .leaflet-touch .leaflet-bar {
- border: 1px solid #0ab6ff;
+ border: 1px solid #005792;
 }
 
 .leaflet-control-attribution {
@@ -51,5 +51,5 @@
  position: absolute;
  bottom: 5px;
  right: 20px;
- background-color: #0ab6ff;
+ background-color: #005792;
 }

@@ -9,9 +9,9 @@ import Typography from "@mui/material/Typography";
 import { Polyline } from "react-leaflet";
 import { RouteContext } from "../../App.tsx";
 import "../../Assets/Styles/RouteDisplayer.css";
+import { LatLngExpression } from "leaflet";
 
 export default function RouteDisplayer() {
- let positions: number[] = [];
  // impost of variables from app.tsx context ;
  const {
   firstLoc,
@@ -32,15 +32,17 @@ export default function RouteDisplayer() {
   let item = route.route.item;
 
   // nessecary function beacause OSRM object sends lnglat object ( revers of latlng )
-  // let positions: number[] = [];
-  let help;
+  let positions: LatLngExpression[] = [];
 
-  if ((positions = [])) {
+  let help;
+  if (positions && item) {
    item.geometry.coordinates.map((item: number[]) => {
-    help = [item[1], item[0]];
-    positions.push(help);
+    help = { lat: item[1], lng: item[0] };
+    positions!.push(help);
    });
   }
+  const lastPosition = positions.pop();
+
   // extraction and collect of the important way points of the routs from summary obj of the response ;
   let text: string[] = [];
   text.push(item.legs[0].summary);
@@ -63,6 +65,10 @@ export default function RouteDisplayer() {
    setRoutingDetailEnable(true);
    positions = [];
   };
+  // console.log([
+  //  [firstLoc.lat, firstLoc.lng],
+  //  [positions[0][0], positions[0][1]],
+  // ]);
 
   return (
    <>
@@ -79,7 +85,7 @@ export default function RouteDisplayer() {
        id="Card"
        sx={
         selectedRoute === index
-         ? { border: "4px solid blue" }
+         ? { border: "4px solid greenyellow" }
          : { border: "4px solid #ff004c59" }
        }
       >
@@ -110,6 +116,9 @@ export default function RouteDisplayer() {
         <Typography
          variant="body2"
          sx={{ m: 0, p: 0, height: "40px", overflow: "hidden" }}
+         style={
+          selectedRoute === index ? { color: "blue" } : { color: "#ff004c59" }
+         }
         >
          important points of the way : <br />
          {text}
@@ -130,32 +139,25 @@ export default function RouteDisplayer() {
      </>
     ) : null}
 
-    {!routingDetailEnable ? (
+    {!routingDetailEnable && positions !== null ? (
      <Polyline
       positions={positions}
-      color={selectedRoute === index ? "#0400ff" : "#ff004c73"}
+      pathOptions={{ color: selectedRoute === index ? "#0400ff" : "#ff004c73" }}
      />
     ) : null}
 
-    {firstLoc !== null && secondLoc !== null && data !== null ? (
-     <Polyline
-      positions={[
-       [firstLoc.lat, firstLoc.lng],
-       [positions[0][0], positions[0][1]],
-      ]}
-      color="green"
-      alt="my poly line"
-     />
+    {firstLoc !== null &&
+    secondLoc !== null &&
+    data !== null &&
+    positions !== null &&
+    lastPosition ? (
+     <Polyline positions={[lastPosition, secondLoc]} color="green" />
     ) : null}
-    {firstLoc !== null && secondLoc !== null && data !== null ? (
-     <Polyline
-      positions={[
-       positions[positions.length - 1],
-       [secondLoc.lat, secondLoc.lng],
-      ]}
-      color="green"
-      alt="my poly line"
-     />
+    {firstLoc !== null &&
+    secondLoc !== null &&
+    data !== null &&
+    positions !== null ? (
+     <Polyline positions={[firstLoc, positions[0]]} color="green" />
     ) : null}
    </>
   );

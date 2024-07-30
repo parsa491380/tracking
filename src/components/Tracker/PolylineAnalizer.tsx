@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { RouteContext } from "../../App.tsx";
 import axios from "axios";
-// import { Polyline } from "react-leaflet";
 import RouteDisplayer from "./RouteDisplayer.tsx";
 import { CircularProgress } from "@mui/material";
 import type context from "../../Types/context.ts";
@@ -30,31 +29,31 @@ export default function PolylineAnalizer(reverser) {
   // here is an example of this standard format :
 
   // ("http://router.project-osrm.org/route/v1/car/13.388860,52.517037;13.397634,52.529407;13.428555,52.523219?alternatives=3&steps=true&geometries=polyline&overview=simplified&annotations=true");
+  if (firstLoc !== null && secondLoc !== null && data === null) {
+   axios
+    .get(
+     `http://router.project-osrm.org/route/v1/${routingType}/${firstLoc.lng},${firstLoc.lat};${secondLoc.lng},${secondLoc.lat}?alternatives=3&steps=true&geometries=geojson&overview=full&annotations=true`
+    )
+    .then((response) => {
+     console.log(response.data);
 
-  axios
-   .get(
-    `http://router.project-osrm.org/route/v1/${routingType}/${firstLoc.lng},${firstLoc.lat};${secondLoc.lng},${secondLoc.lat}?alternatives=3&steps=true&geometries=geojson&overview=full&annotations=true`
-   )
-   .then((response) => {
-    console.log(response.data);
-
-    if (response.data.code === "Ok") {
-     setData(response.data.routes);
-    } else {
-     alert(response.data.message);
-    }
-   });
+     if (response.data.code === "Ok") {
+      setData(response.data.routes);
+     } else {
+      alert(response.data.message);
+     }
+    });
+  }
  };
 
- if (firstLoc !== null && secondLoc !== null && data === null) {
-  routeGeter();
- }
+ routeGeter();
+
  // neseccery for swap function of the higher component
  useEffect(() => {
   if (firstLoc && secondLoc && routingType) {
    routeGeter();
   }
- }, [firstLoc, routingType, reverser.reverser]);
+ }, [firstLoc, routingType, reverser.reverser, data]);
 
  return (
   <>

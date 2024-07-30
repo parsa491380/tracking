@@ -13,7 +13,7 @@
  height: 80px;
  z-index: 99999;
  vertical-align: middle;
- border: 2px solid #0ab6ff;
+ border: 3px solid #005792;
  border-radius: 10%;
  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToDY7o1MfLbmbSN5hQr6ymzs1oUc5waxr4KA&s);
  background-size: cover;
@@ -24,8 +24,8 @@
  width: 80px;
  height: 80px;
  z-index: 1;
-
- border: 3px solid #0ab6ff;
+ vertical-align: middle;
+ border: 3px solid #005792;
  border-radius: 10%;
  background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/bb/Open_Street_Map.png);
  background-size: cover;
@@ -34,11 +34,11 @@
 }
 .center {
  background-color: rgba(0, 0, 0, 0.4);
- width: 74px;
+ width: 80px;
  color: #a1e2fd;
  vertical-align: middle;
  padding-top: 10px;
- height: 74px;
+ height: 70px;
  border-radius: 3px;
 }
 .LayersIcon {
@@ -51,7 +51,7 @@
  width: 80px;
  height: 500px;
  position: absolute;
- top: 30px;
+ top: 65px;
  right: 40px;
  z-index: 998;
 }
@@ -60,9 +60,9 @@
  right: 0;
  bottom: 0;
  padding-top: 2px;
- width: 70px;
- height: 415px;
- background-color: #b4e6fd;
+ width: 75px;
+ height: 445px;
+ background-color: #005792;
  border-radius: 10px;
  overflow: hidden;
 }
@@ -70,13 +70,11 @@
  width: 63px;
  height: 80px;
  align-items: center;
- margin-top: 2px;
- margin-left: 4px;
+ margin-top: 4px;
+ margin-left: 6px;
  margin-right: 6px;
- border-radius: 5px;
- color: #0ab6ff;
- border: 2px solid #b4e6fd;
-
+ color: white;
+ border-bottom: 2px solid white;
  display: inline-block;
 }
 
@@ -88,9 +86,10 @@
  border-radius: 10px;
 }
 .hoverItems:hover {
- border: 2px solid white;
+ border-bottom: 4px solid white;
 }
 #hoverItemText {
+ color: white;
  text-align: center;
  margin-top: 0;
 }
@@ -101,19 +100,19 @@
  top: 30px;
  right: 35px;
  z-index: 999;
- color: #0078a8;
- background-color: #b4e6fd;
+ color: white;
+ background-color: #005792;
  border-radius: 10px;
 }
 #closeMoreDiv {
  width: 20px;
- height: 25px;
+ height: 20px;
  position: absolute;
  top: 8px;
  right: 10px;
  padding-bottom: 5px;
  color: white;
- background-color: #0ab6ff;
+ border: 2px solid white;
  border-radius: 5px;
  font-size: large;
  text-align: center;
@@ -133,7 +132,7 @@
 #satelliteMoreStyle {
  width: 80px;
  height: 80px;
- margin: 5px 0px 0px 0px;
+ margin: 5px 2px 0px 0px;
 
  border-radius: 10%;
  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToDY7o1MfLbmbSN5hQr6ymzs1oUc5waxr4KA&s);
@@ -151,7 +150,7 @@
 }
 
 .moretext {
- color: gray;
+ color: white;
  margin: 10px 0px 10px 20px;
 }
 .active {
@@ -170,7 +169,7 @@
  height: 110px;
  margin-left: 35px;
  border-radius: 10px;
- border: 3px solid #b4e6fd;
+ /* border: 3px solid #b4e6fd; */
  color: gray;
  display: inline-block;
 }

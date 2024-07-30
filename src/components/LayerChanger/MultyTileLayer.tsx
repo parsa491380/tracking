@@ -80,7 +80,7 @@ export default function MultyTileLayer() {
   {
    key: 1,
    url: "https://upload.wikimedia.org/wikipedia/fa/thumb/0/0f/%D9%86%D9%82%D8%B4%D9%87_%D8%AA%D9%88%D9%BE%D9%88%DA%AF%D8%B1%D8%A7%D9%81%DB%8C.png/250px-%D9%86%D9%82%D8%B4%D9%87_%D8%AA%D9%88%D9%BE%D9%88%DA%AF%D8%B1%D8%A7%D9%81%DB%8C.png",
-   title: " Terrain ",
+   title: " Topography ",
    link: "#a",
    quickAccess: true,
    funk: () => {

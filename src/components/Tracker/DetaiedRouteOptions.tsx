@@ -7,9 +7,9 @@ import TurnSlightLeftIcon from "@mui/icons-material/TurnSlightLeft";
 import StraightIcon from "@mui/icons-material/Straight";
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import RotateLeftIcon from "@mui/icons-material/RotateLeft";
-import { Card, Typography } from "@mui/material";
-import { Marker, Polyline, Popup } from "react-leaflet";
-import L from "leaflet";
+import { Alert, Card, Typography } from "@mui/material";
+import { Marker, Polyline, Popup, useMap } from "react-leaflet";
+import L, { LatLngExpression } from "leaflet";
 import "../../Assets/Styles/DetailedRoute.css";
 
 export default function DetaiedRouteOptions(prop) {
@@ -17,18 +17,22 @@ export default function DetaiedRouteOptions(prop) {
  const step = prop.prop.step;
  const index = prop.prop.index;
  let help;
- let positions: number[] = [];
+ const map = useMap();
+ let positions: LatLngExpression[] = [];
 
  step.geometry.coordinates.map((item: number[]) => {
   help = [item[1], item[0]];
   positions.push(help);
  });
- const mouseOver = () => {
+
+ const focusView = () => {
+  //   console.log("aaaa");
+  map.setZoom(16);
+
+  map.flyTo(positions[positions.length - 1]);
   setHover(true);
  };
- const mouseOut = () => {
-  setHover(false);
- };
+
  const IconProvider = (props) => {
   let item = props.item;
   if (item === "uturn") {
@@ -93,8 +97,8 @@ export default function DetaiedRouteOptions(prop) {
  const Generator = () => {
   if (index === 0) {
    return (
-    <div onMouseOver={mouseOver} onMouseOut={mouseOut}>
-     <Card className="card">
+    <div>
+     <Card className="card" onClick={focusView}>
       <Typography className="typo">
        start your trip from {step.name}{" "}
        {step.maneuver.modifier ? (
@@ -108,8 +112,8 @@ export default function DetaiedRouteOptions(prop) {
    );
   } else if (step.distance === 0) {
    return (
-    <div onMouseOver={mouseOver} onMouseOut={mouseOut}>
-     <Card className="card">
+    <div>
+     <Card className="card" onClick={focusView}>
       <Typography className="typo">
        you reached to your destination =))))))
       </Typography>
@@ -118,11 +122,10 @@ export default function DetaiedRouteOptions(prop) {
    );
   } else {
    return (
-    <div onMouseOver={mouseOver} onMouseOut={mouseOut}>
-     <Card className="card">
+    <div>
+     <Card className="card" onClick={focusView}>
       <Typography className="typo">
        move {step.distance} meters in {step.name} and then go : <br />
-       {"  "}
        <IconProvider item={step.maneuver.modifier} />
       </Typography>
      </Card>
@@ -146,8 +149,8 @@ export default function DetaiedRouteOptions(prop) {
    {hover || positions ? (
     <Polyline
      positions={positions}
-     color={hover ? "red" : "blue"}
-     //  color="blue"
+     //  color={hover ? "red" : "blue"}
+     color="blue"
     />
    ) : null}{" "}
    <Marker position={positions[positions.length - 1]} icon={markerIcon}>

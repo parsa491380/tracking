@@ -5,10 +5,10 @@
  bottom: 130px;
  right: 25px;
  z-index: 999999;
- color: #0ab6ff;
+ color: white;
  width: 27px;
  height: 27px;
- background-color: white;
+ background-color: #005792;
  border: 1px solid #0ab6ff;
  border-radius: 5px;
  cursor: pointer;
@@ -16,7 +16,7 @@
 #icon {
  margin: 0;
  margin-top: 3px;
- color: #0ab6ff;
+ color: white;
  width: 16px;
  height: 16px;
 }

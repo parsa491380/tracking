@@ -2,13 +2,13 @@
  position: absolute;
  bottom: 160px;
  right: 25px;
- width: 27px;
- height: 27px;
+ width: 23px;
+ height: 23px;
  z-index: 99999;
- /* padding: 1px; */
+ padding: 1px;
  align-items: center;
- background-color: white;
- color: #0ab6ff;
+ background-color: #005792;
+ color: white;
  border: 1px solid #0ab6ff;
  border-radius: 5px;
  cursor: pointer;

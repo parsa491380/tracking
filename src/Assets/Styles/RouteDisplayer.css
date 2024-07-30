@@ -1,14 +1,17 @@
 #Box {
  min-width: 275;
- border: 5px solid white;
+ border: 5px solid #005792;
 }
 #Card {
- background-color: #daf1fc;
+ margin-top: 10px;
+ background-color: #0ab6ff;
 }
 
 .btn {
  width: 140px;
  height: 45px;
+ margin-left: 200px;
+ margin-bottom: 10px;
  background: linear-gradient(to top, #00154c, #12376e, #23487f);
  color: #fff;
  border-radius: 50px;
