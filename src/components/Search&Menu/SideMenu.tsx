@@ -21,6 +21,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import PermPhoneMsgIcon from "@mui/icons-material/PermPhoneMsg";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Typography } from "@mui/material";
+import "../../Assets/Styles/SideMenu.css";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
  display: "flex",
@@ -34,16 +35,9 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function SideMenu(open) {
  const theme = useTheme();
  const openSideMenu = open.open.openSideMenu;
- const setOpenSideMenu = (bool) => {
-  open.open.setOpenSideMenu(bool);
- };
 
  const handleDrawerOpen = () => {
-  setOpenSideMenu(true);
- };
-
- const handleDrawerClose = () => {
-  setOpenSideMenu(false);
+  open.open.setOpenSideMenu(!openSideMenu);
  };
 
  return (
@@ -78,22 +72,28 @@ export default function SideMenu(open) {
      <Typography variant="h5" sx={{ color: "#005792" }}>
       ROUTING PROJECT
      </Typography>
-     <IconButton onClick={handleDrawerClose}>
+     <IconButton onClick={handleDrawerOpen}>
       {theme.direction === "ltr" ? <ChevronLeftIcon /> : <ChevronRightIcon />}
      </IconButton>
     </DrawerHeader>
     <Divider />
     <List sx={{ borderRight: "4px solid   #005792" }}>
      {[
-      { text: "Search Histiry", icon: <HistoryIcon /> },
-      { text: "Saved Locations", icon: <BookmarkIcon /> },
-      { text: "Add location to the map ", icon: <AddBoxIcon /> },
-      { text: "Acount info", icon: <AccountCircleIcon /> },
+      {
+       text: "Search Histiry",
+       icon: <HistoryIcon className="items" />,
+      },
+      { text: "Saved Locations", icon: <BookmarkIcon className="items" /> },
+      {
+       text: "Add location to the map ",
+       icon: <AddBoxIcon className="items" />,
+      },
+      { text: "Acount info", icon: <AccountCircleIcon className="items" /> },
      ].map((text, index) => (
       <ListItem key={index} disablePadding>
        <ListItemButton>
         <ListItemIcon>{text.icon}</ListItemIcon>
-        <ListItemText primary={text.text} />
+        <ListItemText primary={text.text} className="items" />
        </ListItemButton>
       </ListItem>
      ))}
@@ -101,14 +101,14 @@ export default function SideMenu(open) {
     <Divider />
     <List sx={{ borderRight: "4px solid   #005792" }}>
      {[
-      { text: "Terms of Service ", icon: <HowToRegIcon /> },
-      { text: "Contact us", icon: <PermPhoneMsgIcon /> },
-      { text: "Settings ", icon: <SettingsIcon /> },
+      { text: "Terms of Service ", icon: <HowToRegIcon className="items" /> },
+      { text: "Contact us", icon: <PermPhoneMsgIcon className="items" /> },
+      { text: "Settings ", icon: <SettingsIcon className="items" /> },
      ].map((text, index) => (
       <ListItem key={index} disablePadding>
        <ListItemButton>
         <ListItemIcon>{text.icon}</ListItemIcon>
-        <ListItemText primary={text.text} />
+        <ListItemText primary={text.text} className="items" />
        </ListItemButton>
       </ListItem>
      ))}

@@ -6,9 +6,9 @@ import L from "leaflet";
 
 export default function MultyTileLayer() {
  const layers = {
-  google: "https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}",
+  open: "https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}",
 
-  open: "https://www.google.cn/maps/vt?lyrs=y@189&gl=cn&x={x}&y={y}&z={z}",
+  sattelite: "https://www.google.cn/maps/vt?lyrs=y@189&gl=cn&x={x}&y={y}&z={z}",
 
   dark:
    "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png",
@@ -22,7 +22,7 @@ export default function MultyTileLayer() {
  };
 
  const [mapNumber, setMapNumber] = useState<number>(1);
- const [layerUrl, setLayerUrl] = useState(layers.google);
+ const [layerUrl, setLayerUrl] = useState(layers.sattelite);
  const [vectorLayerUrl, setVectorLayerUrl] = useState<string | null>(null);
 
  const [hover, setHover] = useState<boolean>(false);
@@ -46,7 +46,7 @@ export default function MultyTileLayer() {
   setMapNumber(1);
   setSatActive("inactive");
   setOpenActive("active");
-  setLayerUrl(layers.google);
+  setLayerUrl(layers.sattelite);
  };
 
  const togleMap = () => {
@@ -185,7 +185,7 @@ export default function MultyTileLayer() {
     <TileLayer url={layerUrl} />
     {vectorLayerUrl ? <TileLayer url={vectorLayerUrl} /> : null}
 
-    {mapNumber === 1 ? (
+    {mapNumber === 2 ? (
      <div id="satelliteStyle">
       <center className="center">
        {hover === false ? (

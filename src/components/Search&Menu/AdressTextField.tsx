@@ -100,19 +100,23 @@ export default function AdressTextField() {
     <Box>
      <InputBase
       id="input"
-      placeholder="routing directly"
+      placeholder="routing directly from your location..."
       type="search"
       value={adress}
       onKeyDown={handleEnter}
-      inputProps={{ "aria-label": "search google maps" }}
       onChange={(e) => {
        setAdress(e.target.value);
-       //  console.log(e.target.value);
       }}
      />
-     <Button type="button" aria-label="search" onClick={routingDirectly}>
+     <Button
+      type="button"
+      className="searchButton"
+      aria-label="search"
+      onClick={routingDirectly}
+     >
       <SearchIcon className="SearchIcon" />
      </Button>
+     <span className="devider" />
      <RouteFindingMenu prop={{ openSideMenu, setOpenSideMenu }} />
     </Box>
     {openLocMenu === false ? (
