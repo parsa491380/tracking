@@ -40,13 +40,14 @@ export default function MultyTileLayer() {
   setMapNumber(2);
   setSatActive("active");
   setOpenActive("inactive");
-  setLayerUrl(layers.open);
+  setLayerUrl(layers.sattelite);
  };
  const togleToOpenMap = () => {
   setMapNumber(1);
+
+  setLayerUrl(layers.open);
   setSatActive("inactive");
   setOpenActive("active");
-  setLayerUrl(layers.sattelite);
  };
 
  const togleMap = () => {
