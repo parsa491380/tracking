@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { LegacyRef, useRef, useState } from "react";
 
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import { Marker, Popup, useMap } from "react-leaflet";
@@ -9,25 +9,28 @@ import "../../Assets/Styles/DeviceLocation.css";
 
 export default function DeviceLocation() {
  const [position, setPosition] = useState<LatLng | null>(null);
- const divRef = useRef();
+ const divRef: LegacyRef<HTMLDivElement> | undefined = useRef(null);
  const map = useMap();
 
  React.useEffect(() => {
-  L.DomEvent.disableClickPropagation(divRef.current);
-  L.DomEvent.disableScrollPropagation(divRef.current);
+  L.DomEvent.disableClickPropagation(divRef.current!);
+  L.DomEvent.disableScrollPropagation(divRef.current!);
  });
 
- //  setInterval(() => {
- //   map.locate();
- //  }, 1000);
+ setInterval(() => {
+  map.locate();
+  map.once("locationfound", (location) => {
+   setPosition(location.latlng);
+  });
+ }, 1000);
 
- //  const handleClick = () => {
- //   map.locate();
- //   map.once("locationfound", (location) => {
- //    setPosition(location.latlng);
- //    map.flyTo(location.latlng);
- //   });
- //  };
+ const handleClick = () => {
+  map.locate();
+  map.once("locationfound", (location) => {
+   setPosition(location.latlng);
+   map.flyTo(location.latlng);
+  });
+ };
  const deviceLocIcon = new Icon({
   iconUrl:
    "https://static-00.iconduck.com/assets.00/person-pin-circle-icon-417x512-ex8n0giz.png",
@@ -35,16 +38,9 @@ export default function DeviceLocation() {
   iconAnchor: [20, 32],
   popupAnchor: [0, -30],
  });
-
- const handleClick = () => {};
-
  return (
   <div ref={divRef}>
-   <button
-    id="button"
-    onClick={handleClick}
-    // onDoubleClick={handleClick}
-   >
+   <button id="button" onClick={handleClick}>
     <GpsFixedIcon id="icon" />
    </button>
    {position === null ? null : (

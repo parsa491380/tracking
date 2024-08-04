@@ -13,8 +13,13 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import HistoryIcon from "@mui/icons-material/History";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import HowToRegIcon from "@mui/icons-material/HowToReg";
+import SettingsIcon from "@mui/icons-material/Settings";
+import PermPhoneMsgIcon from "@mui/icons-material/PermPhoneMsg";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Typography } from "@mui/material";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -80,30 +85,30 @@ export default function SideMenu(open) {
     <Divider />
     <List sx={{ borderRight: "4px solid   #005792" }}>
      {[
-      "Search Histiry",
-      "Saved Locations",
-      "Add location to the map ",
-      "Acount info",
+      { text: "Search Histiry", icon: <HistoryIcon /> },
+      { text: "Saved Locations", icon: <BookmarkIcon /> },
+      { text: "Add location to the map ", icon: <AddBoxIcon /> },
+      { text: "Acount info", icon: <AccountCircleIcon /> },
      ].map((text, index) => (
-      <ListItem key={text} disablePadding>
+      <ListItem key={index} disablePadding>
        <ListItemButton>
-        <ListItemIcon>
-         {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-        </ListItemIcon>
-        <ListItemText primary={text} />
+        <ListItemIcon>{text.icon}</ListItemIcon>
+        <ListItemText primary={text.text} />
        </ListItemButton>
       </ListItem>
      ))}
     </List>
     <Divider />
     <List sx={{ borderRight: "4px solid   #005792" }}>
-     {["Terms of Service ", "Contact us", "Settings "].map((text, index) => (
-      <ListItem key={text} disablePadding>
+     {[
+      { text: "Terms of Service ", icon: <HowToRegIcon /> },
+      { text: "Contact us", icon: <PermPhoneMsgIcon /> },
+      { text: "Settings ", icon: <SettingsIcon /> },
+     ].map((text, index) => (
+      <ListItem key={index} disablePadding>
        <ListItemButton>
-        <ListItemIcon>
-         {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-        </ListItemIcon>
-        <ListItemText primary={text} />
+        <ListItemIcon>{text.icon}</ListItemIcon>
+        <ListItemText primary={text.text} />
        </ListItemButton>
       </ListItem>
      ))}

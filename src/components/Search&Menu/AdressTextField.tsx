@@ -32,10 +32,10 @@ export default function AdressTextField() {
 
  const map = useMap();
 
- const divRef = useRef();
+ const divRef: LegacyRef<HTMLDivElement> | undefined = useRef(null);
  useEffect(() => {
-  L.DomEvent.disableClickPropagation(divRef.current);
-  L.DomEvent.disableScrollPropagation(divRef.current);
+  L.DomEvent.disableClickPropagation(divRef.current!);
+  L.DomEvent.disableScrollPropagation(divRef.current!);
  }, [adress, position, data]);
 
  const routingDirectly = async () => {

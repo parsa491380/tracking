@@ -5,7 +5,7 @@ import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import "../../Assets/Styles/FullScreenBotton.css";
 export default function FullScreenBotton() {
  const element = document.documentElement;
- const divRef = React.useRef(null);
+ const divRef : any = React.useRef(null);
  React.useEffect(() => {
   L.DomEvent.disableClickPropagation(divRef.current);
   L.DomEvent.disableScrollPropagation(divRef.current);

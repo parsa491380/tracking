@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { LegacyRef, useState } from "react";
 import LayersIcon from "@mui/icons-material/Layers";
 import { TileLayer } from "react-leaflet";
 import "../../Assets/Styles/MultyTileLayer.css";
@@ -30,10 +30,10 @@ export default function MultyTileLayer() {
  const [satActive, setSatActive] = useState<string>("inactive");
  const [openActive, setOpenActive] = useState<string>("active");
 
- const divRef = React.useRef(null);
+ const divRef: LegacyRef<HTMLDivElement> | undefined = React.useRef(null);
  React.useEffect(() => {
-  L.DomEvent.disableClickPropagation(divRef.current);
-  L.DomEvent.disableScrollPropagation(divRef.current);
+  L.DomEvent.disableClickPropagation(divRef.current!);
+  L.DomEvent.disableScrollPropagation(divRef.current!);
  });
 
  const togleToSatMap = () => {
@@ -137,7 +137,7 @@ export default function MultyTileLayer() {
   },
   {
    key: 7,
-   url: "https://cdn.prod.website-files.com/5b44edefca321a1e2d0c2aa6/5f61480845b551637e3c3969_Dimensions-Transport-Bicycles-Fixed-Gear-Bicycle-Fixie-Icon.svg",
+   url: "https://imageio.forbes.com/specials-images/imageserve/5c0aa5554bbe6f0f2aa19644/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds",
    title: "motoring",
    link: "#h",
    quickAccess: false,

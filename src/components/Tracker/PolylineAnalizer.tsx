@@ -6,8 +6,9 @@ import { CircularProgress } from "@mui/material";
 import type context from "../../Types/context.ts";
 
 export default function PolylineAnalizer(reverser) {
- const { firstLoc, secondLoc, data, setData, routingType } =
-  useContext<context>(RouteContext);
+ const { firstLoc, secondLoc, data, setData, routingType } = useContext<
+  context | any
+ >(RouteContext);
 
  const routeGeter = () => {
   // the following is the standard format of OSRM for routing requests :

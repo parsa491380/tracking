@@ -17,7 +17,6 @@ export default function DetaiedRouteOptions(prop) {
  const step = prop.prop.step;
  const index = prop.prop.index;
  const hover = prop.prop.hover;
- //  const setHover = prop.prop.setHover();
 
  let help;
  const map = useMap();

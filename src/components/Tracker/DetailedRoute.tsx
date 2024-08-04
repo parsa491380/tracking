@@ -1,33 +1,10 @@
 import { Box, Card, Typography } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "../../Assets/Styles/DetailedRoute.css";
 import DetaiedRouteOptions from "./DetaiedRouteOptions.tsx";
-import context from "../../Types/context.ts";
-import { RouteContext } from "../../App.tsx";
 export default function DetailedRoute(item) {
  const [hover, setHover] = useState();
-
- const { setFirstLoc } = useContext<context>(RouteContext);
- const [fakePosition, setFakePositions] = useState<number[][]>([]);
  const leg = item.item.legs[0];
-
- const positionFaker = () => {
-  //   console.log(
-  //    leg.steps.map((step, index) => {
-  //     return <DetaiedRouteOptions prop={{ step, index }} key={index} />;
-  //    })
-  //   );
-  //   leg.steps.map((item) => {
-  //    setFakePositions(
-  //     item.geometry.coordinates[item.geometry.coordinates.length - 1]
-  //    );
-  //   });
-  console.log(fakePosition);
- };
- let help = [];
- fakePosition.map((item) => {
-  help.push([item[1], item[0]]);
- });
 
  function secondsToHms(d) {
   d = Number(d);
@@ -44,12 +21,7 @@ export default function DetailedRoute(item) {
  return (
   <>
    <Box>
-    <Card
-     variant="outlined"
-     id="header"
-     sx={{ border: "2px solid blue" }}
-     onClick={positionFaker}
-    >
+    <Card variant="outlined" id="header" sx={{ border: "2px solid blue" }}>
      <Typography> your trip will pass from : {leg.summary}</Typography>
      <Typography> duration : {duration} </Typography>
      <Typography> distance : {Math.round(leg.distance / 1000)} Km</Typography>

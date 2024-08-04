@@ -49,10 +49,10 @@ export default function RouteFindingMenu(prop) {
 
  const open = Boolean(anchorEl);
  const map = useMap();
- const divRef = useRef<any>();
+ const divRef : LegacyRef<HTMLDivElement> | undefined = useRef(null);
  useEffect(() => {
-  L.DomEvent.disableClickPropagation(divRef.current);
-  L.DomEvent.disableScrollPropagation(divRef.current);
+  L.DomEvent.disableClickPropagation(divRef.current!);
+  L.DomEvent.disableScrollPropagation(divRef.current!);
  }, [openLocMenu, firstLoc, data]);
 
  const handleOpen = () => {
