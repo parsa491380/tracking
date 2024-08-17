@@ -41,7 +41,7 @@ export default function SideMenu(open) {
  };
 
  return (
-  <Box sx={{ display: "inline-block", width: 55, zIndex: 9999999 }}>
+  <Box sx={{ display: "inline-block", width: 55, zIndex: 99 }}>
    <Toolbar>
     <IconButton
      color="inherit"

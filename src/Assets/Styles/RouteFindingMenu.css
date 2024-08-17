@@ -35,7 +35,7 @@ svg.iconGroup {
  color: white;
  width: 35px;
  height: 35px;
- margin: 10px 0px 0px 20px;
+ margin: 30px 0px 0px 30px;
  border-radius: 10px;
  border: 2px solid white;
 }
@@ -44,8 +44,8 @@ svg.iconGroup:hover {
  border: 2px solid rgb(5, 191, 248);
 }
 svg.active {
- color: greenyellow;
- border: 2px solid greenyellow;
+ color: rgb(5, 191, 248);
+ border: 2px solid rgb(5, 191, 248);
 }
 svg.disabled {
  color: #fffafa5b;
@@ -56,13 +56,24 @@ svg.disabled {
  border-radius: 10px;
  border: 2px solid #fffafa5b;
 }
+.closeIcon {
+ position: absolute;
+ top: 10px;
+ right: 10px;
+ color: white;
+ width: 25px;
+ height: 25px;
+ /* margin: 10px 0px 0px 20px; */
+ border-radius: 7px;
+ border: 2px solid white;
+}
 .adressInput {
- width: 250px;
+ width: 260px;
  height: 20px;
  padding: 8px;
  margin: 0px 0px 0px 5px;
  border: 2px solid rgb(5, 191, 248);
- background-color: rgb(5, 191, 248);
+ background-color: white;
  color: white;
  border-radius: 10px;
 }
@@ -75,9 +86,9 @@ h3 {
 }
 
 .inputDiv {
- width: 350px;
- margin: 10px 0px 0px 0px;
+ width: 380px;
  padding: 10px;
+ padding-left: 30px;
 }
 
 .img {
@@ -100,7 +111,7 @@ h3 {
 #reverseLoc {
  position: absolute;
  color: #0ab6ff;
- left: 10px;
+ left: 45px;
  top: 125px;
  width: 35px;
  height: 35px;

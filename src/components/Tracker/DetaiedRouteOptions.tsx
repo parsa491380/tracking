@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import UTurnRightIcon from "@mui/icons-material/UTurnRight";
 import TurnRightIcon from "@mui/icons-material/TurnRight";
 import TurnSlightRightIcon from "@mui/icons-material/TurnSlightRight";
@@ -8,10 +8,9 @@ import StraightIcon from "@mui/icons-material/Straight";
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import RotateLeftIcon from "@mui/icons-material/RotateLeft";
 import { Card, Typography } from "@mui/material";
-import { Marker, Polyline, Popup, useMap } from "react-leaflet";
-import L, { LatLngExpression, icon } from "leaflet";
+import { Marker, Polyline, useMap } from "react-leaflet";
+import L, { LatLngExpression } from "leaflet";
 import "../../Assets/Styles/DetailedRoute.css";
-import { border } from "@mui/system";
 
 export default function DetaiedRouteOptions(prop) {
  const step = prop.prop.step;
@@ -26,14 +25,10 @@ export default function DetaiedRouteOptions(prop) {
   help = [item[1], item[0]];
   positions.push(help);
  });
+
  const focusView = () => {
-  map.setZoom(16);
-
-  setTimeout(() => {
-   map.flyTo(positions[positions.length - 1]);
-
-   prop.prop.setHover(index);
-  }, 100);
+  map.setView(positions[positions.length - 1], 16);
+  prop.prop.setHover(index);
  };
 
  const IconProvider = (props) => {
@@ -148,12 +143,7 @@ export default function DetaiedRouteOptions(prop) {
    );
   }
  };
- //  if (hover) {
- //   setIconSize([40, 40]);
- //  }
- //   else {
- //    setIconSize([10, 10]);
- //   }
+
  let markerIcon = new L.Icon({
   iconUrl:
    "https://cdn.iconscout.com/icon/premium/png-512-thumb/point-3298337-2761106.png?f=webp&w=256",
@@ -181,11 +171,14 @@ export default function DetaiedRouteOptions(prop) {
     />
    ) : null}{" "}
    <Marker
+    eventHandlers={{
+     click: () => {
+      focusView();
+     },
+    }}
     position={positions[positions.length - 1]}
     icon={hover === index ? selectedMarkerIcon : markerIcon}
-   >
-    <Popup> مبدا </Popup>
-   </Marker>
+   />
   </>
  );
 }

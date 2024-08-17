@@ -65,10 +65,6 @@ export default function RouteDisplayer() {
    setRoutingDetailEnable(true);
    positions = [];
   };
-  // console.log([
-  //  [firstLoc.lat, firstLoc.lng],
-  //  [positions[0][0], positions[0][1]],
-  // ]);
 
   return (
    <>
@@ -85,7 +81,7 @@ export default function RouteDisplayer() {
        id="Card"
        sx={
         selectedRoute === index
-         ? { border: "4px solid greenyellow" }
+         ? { border: "4px solid blue" }
          : { border: "4px solid #ff004c59" }
        }
       >
@@ -142,7 +138,7 @@ export default function RouteDisplayer() {
     {!routingDetailEnable && positions !== null ? (
      <Polyline
       positions={positions}
-      pathOptions={{ color: selectedRoute === index ? "#0400ff" : "#ff004c73" }}
+      pathOptions={{ color: selectedRoute === index ? "#0400ff" : "#ff004c59" }}
      />
     ) : null}
 

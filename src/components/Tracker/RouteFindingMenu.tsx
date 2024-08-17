@@ -49,7 +49,7 @@ export default function RouteFindingMenu(prop) {
 
  const open = Boolean(anchorEl);
  const map = useMap();
- const divRef : LegacyRef<HTMLDivElement> | undefined = useRef(null);
+ const divRef: LegacyRef<HTMLDivElement> | undefined = useRef(null);
  useEffect(() => {
   L.DomEvent.disableClickPropagation(divRef.current!);
   L.DomEvent.disableScrollPropagation(divRef.current!);
@@ -185,7 +185,7 @@ export default function RouteFindingMenu(prop) {
      <AirplanemodeActiveIcon className="disabled" />{" "}
      <CloseIcon
       onClick={handleClose}
-      className="iconGroup "
+      className="closeIcon "
       titleAccess="cancel and close routing"
      />
      <SwapVertIcon
@@ -203,6 +203,7 @@ export default function RouteFindingMenu(prop) {
       <h3> . . . . </h3>
       <input
        type="text"
+       disabled
        className="adressInput"
        placeholder={firstLoc === null ? "click the map" : `${firstLoc}`}
       />
@@ -216,6 +217,7 @@ export default function RouteFindingMenu(prop) {
       <h3> . . . . </h3>
       <input
        type="text"
+       disabled
        className="adressInput"
        placeholder={secondLoc === null ? "click the map" : `${secondLoc}`}
       />
