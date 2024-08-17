@@ -7,7 +7,7 @@ import TurnSlightLeftIcon from "@mui/icons-material/TurnSlightLeft";
 import StraightIcon from "@mui/icons-material/Straight";
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import RotateLeftIcon from "@mui/icons-material/RotateLeft";
-import { Card, Typography } from "@mui/material";
+import { Box, Card, Typography } from "@mui/material";
 import { Marker, Polyline, useMap } from "react-leaflet";
 import L, { LatLngExpression } from "leaflet";
 import "../../Assets/Styles/DetailedRoute.css";
@@ -96,10 +96,12 @@ export default function DetaiedRouteOptions(prop) {
   if (index === 0) {
    return (
     <div>
+     <Box className="gapBox" />
+
      <Card
       className="card"
       onClick={focusView}
-      sx={hover === index ? { border: "2px solid red " } : null}
+      sx={hover === index ? { border: "3px solid rgb(5, 191, 248) " } : null}
      >
       <Typography className="typo">
        start your trip from {step.name}{" "}
@@ -118,12 +120,13 @@ export default function DetaiedRouteOptions(prop) {
      <Card
       className="card"
       onClick={focusView}
-      sx={hover === index ? { border: "2px solid red " } : null}
+      sx={hover === index ? { border: "3px solid rgb(5, 191, 248) " } : null}
      >
       <Typography className="typo">
        you reached to your destination =))))))
       </Typography>
      </Card>
+     <Box sx={{ height: " 30px" }} />
     </div>
    );
   } else {
@@ -132,7 +135,7 @@ export default function DetaiedRouteOptions(prop) {
      <Card
       className="card"
       onClick={focusView}
-      sx={hover === index ? { border: "2px solid red " } : null}
+      sx={hover === index ? { border: "3px solid rgb(5, 191, 248) " } : null}
      >
       <Typography className="typo">
        move {step.distance} meters in {step.name} and then go : <br />
@@ -169,7 +172,7 @@ export default function DetaiedRouteOptions(prop) {
      //  color={hover ? "red" : "blue"}
      color="blue"
     />
-   ) : null}{" "}
+   ) : null}
    <Marker
     eventHandlers={{
      click: () => {

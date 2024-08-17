@@ -26,7 +26,7 @@
 
 #iconGroupContainer {
  width: 100%;
- height: 270px;
+ height: 260px;
  border-bottom: 2px solid #daf1fc;
  background-color: #005792;
 }
@@ -86,9 +86,9 @@ h3 {
 }
 
 .inputDiv {
- width: 380px;
+ width: 350px;
  padding: 10px;
- padding-left: 30px;
+ padding-left: 20px;
 }
 
 .img {

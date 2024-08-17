@@ -12,12 +12,17 @@
  margin-top: 5px;
  /* margin-left: 1%; */
  text-align: center;
- width: 96%;
+ width: 94%;
  padding: 5px;
+ margin-left: 5px;
  align-items: center;
 }
 .typo {
  color: blue;
  text-align: center;
  width: 100%;
+}
+.gapBox {
+ width: 96%;
+ height: 20px;
 }

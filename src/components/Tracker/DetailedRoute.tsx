@@ -20,7 +20,15 @@ export default function DetailedRoute(item) {
  const duration = secondsToHms(leg.duration);
  return (
   <>
-   <Box sx={{ position: "absolute", top: "270px" }}>
+   <Box
+    sx={{
+     position: "absolute",
+     top: "260px",
+     width: "400px",
+     height: "75vh",
+     overflow: "scroll",
+    }}
+   >
     <Card variant="outlined" id="header" sx={{ border: "2px solid blue" }}>
      <Typography> your trip will pass from : {leg.summary}</Typography>
      <Typography> duration : {duration} </Typography>

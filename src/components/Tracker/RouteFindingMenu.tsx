@@ -153,6 +153,7 @@ export default function RouteFindingMenu(prop) {
       zIndex: 999999,
       boxSizing: "border-box",
       bgcolor: "#005792",
+      overflow: "hidden",
      },
     }}
     variant="persistent"
